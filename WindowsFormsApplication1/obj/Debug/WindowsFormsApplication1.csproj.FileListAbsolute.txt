@@ -1,0 +1,11 @@
+c:\users\matias\documents\visual studio 2012\Projects\MercadoEnvio\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.config
+C:\Users\ntobio\Desktop\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\MercadoEnvio\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.config
+C:\Users\ntobio\Desktop\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\MercadoEnvio\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+C:\Users\ntobio\Desktop\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\MercadoEnvio\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+C:\Users\ntobio\Desktop\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\MercadoEnvio\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csprojResolveAssemblyReference.cache
+C:\Users\ntobio\Desktop\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\MercadoEnvio\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+C:\Users\ntobio\Desktop\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\MercadoEnvio\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
+C:\Users\ntobio\Desktop\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\MercadoEnvio\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+C:\Users\ntobio\Desktop\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\MercadoEnvio\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+C:\Users\ntobio\Desktop\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\MercadoEnvio\WindowsFormsApplication1\obj\Debug\AerolineaFrba.Form1.resources
+C:\Users\ntobio\Desktop\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\MercadoEnvio\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Rol.Form1.resources
