@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MercadoEnvio.Base_De_Datos;
 using WindowsFormsApplication1.ABM_Usuario;
+using MercadoEnvio.Abm_Rol;
 /*
 using MercadoEnvio.Abm_Ciudad;
 using MercadoEnvio.Registro_Llegada_Destino;
@@ -34,10 +35,12 @@ namespace MercadoEnvio.Abm_Menu
             //
         }
 
-        public void CargarMenu(string idusuario,string usuario)
+        public void CargarMenu(string idusuario,string usuario, DateTime appDate)
         {
             textBox1.Text = usuario;
             textBox1.Enabled = false;
+            textBox2.Text = appDate.ToShortDateString();//.Date.ToString().Trim();
+            textBox2.Enabled = false;
             DataTable rolUsado = new DataTable();
             string cadena = "select ru.IdRol,r.nombre from Class.RolUsuario ru join Class.Rol r on ru.idrol=r.idrol where ru.IdUsuario='" + idusuario + "' order by Orden";
             rolUsado = Conexion.LeerTabla(cadena);
@@ -90,15 +93,16 @@ namespace MercadoEnvio.Abm_Menu
                         case 9:
                             button9.Enabled = true;
                             break;
-                        case 10:
-                            button10.Enabled = true;
-                            break;
+                        /*case 10:
+                            button9.Enabled = true;
+                            break;*/
                     }
 
                 }
             }
             else
             {
+                button1.Enabled = false;
                 button1.Enabled = false;
                 button2.Enabled = false;
                 button3.Enabled = false;
@@ -108,7 +112,6 @@ namespace MercadoEnvio.Abm_Menu
                 button7.Enabled = false;
                 button8.Enabled = false;
                 button9.Enabled = false;
-                button10.Enabled = false;
             }
         }
 
@@ -129,8 +132,6 @@ namespace MercadoEnvio.Abm_Menu
         private void button2_Click(object sender, EventArgs e)
         {
         }
-
-
 
         private void button9_Click(object sender, EventArgs e)
         {
@@ -154,6 +155,8 @@ namespace MercadoEnvio.Abm_Menu
 
         private void button3_Click(object sender, EventArgs e)
         {
+            Rolabm rol = new Rolabm();
+            rol.Show();
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -177,6 +180,11 @@ namespace MercadoEnvio.Abm_Menu
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
         }

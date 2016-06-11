@@ -5,7 +5,6 @@ C:\Users\ntobio\Desktop\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\Mercad
 C:\Users\ntobio\Desktop\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\MercadoEnvio\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
 C:\Users\ntobio\Desktop\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\MercadoEnvio\WindowsFormsApplication1\obj\Debug\MercadoEnvio.csprojResolveAssemblyReference.cache
 C:\Users\ntobio\Desktop\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\MercadoEnvio\WindowsFormsApplication1\obj\Debug\MercadoEnvio.Abm_Menu.AbmMenu.resources
-C:\Users\ntobio\Desktop\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\MercadoEnvio\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Rol.Form1.resources
 C:\Users\ntobio\Desktop\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\MercadoEnvio\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Usuario.Usuarios.resources
 C:\Users\ntobio\Desktop\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\MercadoEnvio\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
 C:\Users\ntobio\Desktop\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\MercadoEnvio\WindowsFormsApplication1\obj\Debug\MercadoEnvio.csproj.GenerateResource.Cache
@@ -19,8 +18,13 @@ C:\Users\Eugenia\Desktop\Gestion de datos\2016\MercadoEnvio\WindowsFormsApplicat
 C:\Users\Eugenia\Desktop\Gestion de datos\2016\MercadoEnvio\WindowsFormsApplication1\obj\Debug\MercadoEnvio.csprojResolveAssemblyReference.cache
 C:\Users\Eugenia\Desktop\Gestion de datos\2016\MercadoEnvio\WindowsFormsApplication1\obj\Debug\MercadoCLass.Login.resources
 C:\Users\Eugenia\Desktop\Gestion de datos\2016\MercadoEnvio\WindowsFormsApplication1\obj\Debug\MercadoEnvio.Abm_Menu.AbmMenu.resources
-C:\Users\Eugenia\Desktop\Gestion de datos\2016\MercadoEnvio\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Rol.Form1.resources
 C:\Users\Eugenia\Desktop\Gestion de datos\2016\MercadoEnvio\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.ABM_Usuario.Usuarios.resources
 C:\Users\Eugenia\Desktop\Gestion de datos\2016\MercadoEnvio\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form1.resources
 C:\Users\Eugenia\Desktop\Gestion de datos\2016\MercadoEnvio\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
 C:\Users\Eugenia\Desktop\Gestion de datos\2016\MercadoEnvio\WindowsFormsApplication1\obj\Debug\MercadoEnvio.csproj.GenerateResource.Cache
+C:\Users\ntobio\Desktop\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\MercadoEnvio\WindowsFormsApplication1\obj\Debug\MercadoEnvio.Abm_Rol.Rol.resources
+C:\Users\ntobio\Desktop\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\MercadoEnvio\WindowsFormsApplication1\obj\Debug\MercadoEnvio.Abm_Rol.Rolabm.resources
+C:\Users\ntobio\Desktop\TP Frba MercadoEnvio - 1C 2016\Aplicacion Desktop\MercadoEnvio\WindowsFormsApplication1\obj\Debug\MercadoEnvio.Abm_Rol.Roles_Sistema.resources
+C:\Users\Eugenia\Desktop\Gestion de datos\2016\MercadoEnvio\WindowsFormsApplication1\obj\Debug\MercadoEnvio.Abm_Rol.Rol.resources
+C:\Users\Eugenia\Desktop\Gestion de datos\2016\MercadoEnvio\WindowsFormsApplication1\obj\Debug\MercadoEnvio.Abm_Rol.Rolabm.resources
+C:\Users\Eugenia\Desktop\Gestion de datos\2016\MercadoEnvio\WindowsFormsApplication1\obj\Debug\MercadoEnvio.Abm_Rol.Roles_Sistema.resources
