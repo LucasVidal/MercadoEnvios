@@ -119,6 +119,8 @@ namespace MercadoEnvio.Abm_Menu
 
         private void button2_Click(object sender, EventArgs e)
         {
+            Usuarios users = new Usuarios();
+            users.Show();
         }
 
         private void button9_Click(object sender, EventArgs e)
