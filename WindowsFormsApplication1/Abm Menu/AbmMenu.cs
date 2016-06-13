@@ -59,6 +59,17 @@ namespace MercadoEnvio.Abm_Menu
             //cadena = "select RolFuncionalidad.idFuncionalidad as id_func,nombre from Class.RolFuncionalidad join Class.Funcionalidad on RolFuncionalidad.idFuncionalidad=funcionalidad.idFuncionalidad where RolFuncionalidad.idRol=" + usuario + " and TienePermisos=1";            
             string cadena = "select RolFuncionalidad.idFuncionalidad as id_func,nombre from Class.RolFuncionalidad join Class.Funcionalidad on RolFuncionalidad.idFuncionalidad=funcionalidad.idFuncionalidad where RolFuncionalidad.idRol=" + comboBox1.SelectedValue.ToString().Trim() + " and TienePermisos=1";
             funcionalidades = Conexion.LeerTabla(cadena);
+            //Inicializo todo inhabilitad
+            button1.Enabled = false;
+            button1.Enabled = false;
+            button2.Enabled = false;
+            button3.Enabled = false;
+            button4.Enabled = false;
+            button5.Enabled = false;
+            button6.Enabled = false;
+            button7.Enabled = false;
+            button8.Enabled = false;
+            button9.Enabled = false;
             if (funcionalidades.Rows.Count != 0)
             {
                 foreach (DataRow fila in funcionalidades.Rows)
@@ -99,19 +110,6 @@ namespace MercadoEnvio.Abm_Menu
                     }
 
                 }
-            }
-            else
-            {
-                button1.Enabled = false;
-                button1.Enabled = false;
-                button2.Enabled = false;
-                button3.Enabled = false;
-                button4.Enabled = false;
-                button5.Enabled = false;
-                button6.Enabled = false;
-                button7.Enabled = false;
-                button8.Enabled = false;
-                button9.Enabled = false;
             }
         }
 
