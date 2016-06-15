@@ -80,7 +80,7 @@ namespace WindowsFormsApplication1.Utils
         {
             SqlConnection connection = DB.GetDB();
             SqlCommand cmd = new SqlCommand();
-            cmd.Connection = conexion;
+            cmd.Connection = connection;
             cmd.CommandText = query;
 
             DataSet datos = new DataSet();

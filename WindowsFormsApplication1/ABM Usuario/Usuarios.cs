@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MercadoEnvio.Base_De_Datos;
+using WindowsFormsApplication1.ABM_Usuario;
 
 namespace MercadoEnvio.ABM_Usuario
 {
