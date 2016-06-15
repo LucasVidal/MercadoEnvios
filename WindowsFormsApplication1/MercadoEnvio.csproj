@@ -133,6 +133,7 @@
       <DependentUpon>App.config</DependentUpon>
     </Compile>
     <Compile Include="Base De Datos\Conexion.cs" />
+    <Compile Include="Base De Datos\RoleDAO.cs" />
     <Compile Include="Base De Datos\UsersDAO.cs" />
     <Compile Include="Calificar\Form1.cs">
       <SubType>Form</SubType>
@@ -178,6 +179,7 @@
     </Compile>
     <Compile Include="Model\Empresa.cs" />
     <Compile Include="Model\Persona.cs" />
+    <Compile Include="Model\Rol.cs" />
     <Compile Include="Model\Usuario.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -283,7 +285,6 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

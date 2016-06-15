@@ -12,7 +12,6 @@ namespace WindowsFormsApplication1.Model
         public string Username { get; set; }
         public string Password { get; set; }
         public int RolId { get; set; }
-        public string TipoDeDocumento { get; set; }
         public string Email { get; set; }
         public string Telefono { get; set; }
         public string Calle { get; set; }
@@ -23,7 +22,7 @@ namespace WindowsFormsApplication1.Model
         public string CodigoPostal { get; set; }
         public DateTime FechaDeCreacion { get; set; }
 
-        public Usuario(int IdUsuario, string Username, string Password, int RolId, string TipoDeDocumento, string Email,
+        public Usuario(int IdUsuario, string Username, string Password, int RolId, string Email,
             string Telefono, string Calle, string Numero, string Piso, string Depto, string Localidad,
             string CodigoPostal, DateTime FechaDeCreacion)
         {
@@ -31,7 +30,6 @@ namespace WindowsFormsApplication1.Model
             this.Username = Username;
             this.Password = Password;
             this.RolId = RolId;
-            this.TipoDeDocumento = TipoDeDocumento;
             this.Email = Email;
             this.Telefono = Telefono;
             this.Calle = Calle;

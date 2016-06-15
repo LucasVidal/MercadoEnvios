@@ -10,6 +10,7 @@ namespace WindowsFormsApplication1.Model
     {
         public string Nombre { get; set; }
         public string Apellido { get; set; }
+        public string TipoDeDocumento { get; set; }
         public string DNI { get; set; }
         public DateTime FechaDeNacimiento { get; set; }
 
@@ -17,11 +18,12 @@ namespace WindowsFormsApplication1.Model
             string DNI, string TipoDeDocumento, string Email, string Telefono, string Calle, string Numero, 
             string Piso, string Depto, string Localidad, string CodigoPostal, DateTime FechaDeNacimiento, 
             DateTime FechaDeCreacion)
-            : base(IdUsuario, Username, Password, RolId, TipoDeDocumento, Email, Telefono, Calle, Numero, Piso, Depto, Localidad,
+            : base(IdUsuario, Username, Password, RolId, Email, Telefono, Calle, Numero, Piso, Depto, Localidad,
             CodigoPostal, FechaDeCreacion)
         {
             this.Nombre = Nombre;
             this.Apellido = Apellido;
+            this.TipoDeDocumento = TipoDeDocumento;
             this.DNI = DNI;
             this.FechaDeNacimiento = FechaDeNacimiento;
         }

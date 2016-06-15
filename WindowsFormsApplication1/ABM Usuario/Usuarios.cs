@@ -11,9 +11,9 @@ using MercadoEnvio.Base_De_Datos;
 
 namespace MercadoEnvio.ABM_Usuario
 {
-    public partial class Usuarios : Form
+    public partial class UsuariosForm : Form
     {
-        public Usuarios()
+        public UsuariosForm()
         {
             InitializeComponent();
         }

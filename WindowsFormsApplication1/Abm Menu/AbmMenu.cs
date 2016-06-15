@@ -119,7 +119,7 @@ namespace MercadoEnvio.Abm_Menu
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Usuarios users = new Usuarios();
+            UsuariosForm users = new UsuariosForm();
             users.Show();
         }
 

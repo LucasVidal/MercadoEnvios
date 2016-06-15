@@ -1,6 +1,6 @@
 ﻿namespace MercadoEnvio.ABM_Usuario
 {
-    partial class Usuarios
+    partial class UsuariosForm
     {
         /// <summary>
         /// Required designer variable.

@@ -35,13 +35,16 @@ namespace WindowsFormsApplication1.ABM_Usuario
 
         private void UserEdit_Load(object sender, EventArgs e)
         {
-            UsersDAO dao = new UsersDAO();
-            Persona persona = dao.get(62);
+            UsersDAO usersDao = new UsersDAO();
+            RoleDAO roleDao = new RoleDAO();
+
+            Persona persona = usersDao.get(62);
 
             idLbl.Text = persona.IdUsuario.ToString();
             usernameTxt.Text = persona.Username;
-            nombreTxt.Text = persona.Nombre;
-            apellidoTxt.Text = persona.Apellido;
+            nameTxt.Text = persona.Nombre;
+            surnameTxt.Text = persona.Apellido;
+            rolCmb.Items.AddRange(roleDao.getAllRoles().ToArray());
         }
     }
 }

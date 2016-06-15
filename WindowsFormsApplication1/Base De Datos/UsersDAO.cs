@@ -27,5 +27,11 @@ namespace WindowsFormsApplication1.Base_De_Datos
                 row.Field<DateTime>("FechaNac"), row.Field<DateTime>("FechaCreacion")
             );
         }
+
+        public Empresa get(int userID)
+        {
+            String query = "select * from class.usuario, class.empresa where class.Usuario.IdUsuario = " + userID.ToString();
+            
+        }
     }
 }
