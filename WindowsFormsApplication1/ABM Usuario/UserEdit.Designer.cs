@@ -50,7 +50,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.addressCityTxt = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.personGroupBox = new System.Windows.Forms.GroupBox();
             this.companyRadioButton = new System.Windows.Forms.RadioButton();
             this.personRadioButton = new System.Windows.Forms.RadioButton();
             this.IDNumberTxt = new System.Windows.Forms.TextBox();
@@ -61,7 +61,7 @@
             this.label12 = new System.Windows.Forms.Label();
             this.surnameTxt = new System.Windows.Forms.TextBox();
             this.nameTxt = new System.Windows.Forms.TextBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.companyGroupBox = new System.Windows.Forms.GroupBox();
             this.mainActivityTxt = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
@@ -74,8 +74,8 @@
             this.label20 = new System.Windows.Forms.Label();
             this.birthdateTxt = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.personGroupBox.SuspendLayout();
+            this.companyGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // usernameTxt
@@ -257,25 +257,25 @@
             this.label11.TabIndex = 25;
             this.label11.Text = "Depto";
             // 
-            // groupBox1
+            // personGroupBox
             // 
-            this.groupBox1.Controls.Add(this.createdAtTxt);
-            this.groupBox1.Controls.Add(this.label20);
-            this.groupBox1.Controls.Add(this.birthdateTxt);
-            this.groupBox1.Controls.Add(this.label21);
-            this.groupBox1.Controls.Add(this.IDNumberTxt);
-            this.groupBox1.Controls.Add(this.label15);
-            this.groupBox1.Controls.Add(this.label14);
-            this.groupBox1.Controls.Add(this.label13);
-            this.groupBox1.Controls.Add(this.IDTypeTxt);
-            this.groupBox1.Controls.Add(this.label12);
-            this.groupBox1.Controls.Add(this.surnameTxt);
-            this.groupBox1.Controls.Add(this.nameTxt);
-            this.groupBox1.Location = new System.Drawing.Point(463, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(271, 195);
-            this.groupBox1.TabIndex = 32;
-            this.groupBox1.TabStop = false;
+            this.personGroupBox.Controls.Add(this.createdAtTxt);
+            this.personGroupBox.Controls.Add(this.label20);
+            this.personGroupBox.Controls.Add(this.birthdateTxt);
+            this.personGroupBox.Controls.Add(this.label21);
+            this.personGroupBox.Controls.Add(this.IDNumberTxt);
+            this.personGroupBox.Controls.Add(this.label15);
+            this.personGroupBox.Controls.Add(this.label14);
+            this.personGroupBox.Controls.Add(this.label13);
+            this.personGroupBox.Controls.Add(this.IDTypeTxt);
+            this.personGroupBox.Controls.Add(this.label12);
+            this.personGroupBox.Controls.Add(this.surnameTxt);
+            this.personGroupBox.Controls.Add(this.nameTxt);
+            this.personGroupBox.Location = new System.Drawing.Point(463, 12);
+            this.personGroupBox.Name = "personGroupBox";
+            this.personGroupBox.Size = new System.Drawing.Size(271, 195);
+            this.personGroupBox.TabIndex = 32;
+            this.personGroupBox.TabStop = false;
             // 
             // companyRadioButton
             // 
@@ -363,21 +363,21 @@
             this.nameTxt.Size = new System.Drawing.Size(121, 20);
             this.nameTxt.TabIndex = 32;
             // 
-            // groupBox2
+            // companyGroupBox
             // 
-            this.groupBox2.Controls.Add(this.mainActivityTxt);
-            this.groupBox2.Controls.Add(this.label16);
-            this.groupBox2.Controls.Add(this.label17);
-            this.groupBox2.Controls.Add(this.label18);
-            this.groupBox2.Controls.Add(this.contactNameTxt);
-            this.groupBox2.Controls.Add(this.label19);
-            this.groupBox2.Controls.Add(this.companyIDTxt);
-            this.groupBox2.Controls.Add(this.companyNameTxt);
-            this.groupBox2.Location = new System.Drawing.Point(463, 223);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(271, 151);
-            this.groupBox2.TabIndex = 40;
-            this.groupBox2.TabStop = false;
+            this.companyGroupBox.Controls.Add(this.mainActivityTxt);
+            this.companyGroupBox.Controls.Add(this.label16);
+            this.companyGroupBox.Controls.Add(this.label17);
+            this.companyGroupBox.Controls.Add(this.label18);
+            this.companyGroupBox.Controls.Add(this.contactNameTxt);
+            this.companyGroupBox.Controls.Add(this.label19);
+            this.companyGroupBox.Controls.Add(this.companyIDTxt);
+            this.companyGroupBox.Controls.Add(this.companyNameTxt);
+            this.companyGroupBox.Location = new System.Drawing.Point(463, 223);
+            this.companyGroupBox.Name = "companyGroupBox";
+            this.companyGroupBox.Size = new System.Drawing.Size(271, 151);
+            this.companyGroupBox.TabIndex = 40;
+            this.companyGroupBox.TabStop = false;
             // 
             // mainActivityTxt
             // 
@@ -480,9 +480,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(779, 418);
-            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.companyGroupBox);
             this.Controls.Add(this.companyRadioButton);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.personGroupBox);
             this.Controls.Add(this.personRadioButton);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.addressCityTxt);
@@ -509,10 +509,10 @@
             this.Name = "UserEdit";
             this.Text = "UserEdit";
             this.Load += new System.EventHandler(this.UserEdit_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.personGroupBox.ResumeLayout(false);
+            this.personGroupBox.PerformLayout();
+            this.companyGroupBox.ResumeLayout(false);
+            this.companyGroupBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -542,7 +542,7 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox addressCityTxt;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox personGroupBox;
         private System.Windows.Forms.TextBox createdAtTxt;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox birthdateTxt;
@@ -557,7 +557,7 @@
         private System.Windows.Forms.TextBox nameTxt;
         private System.Windows.Forms.RadioButton companyRadioButton;
         private System.Windows.Forms.RadioButton personRadioButton;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox companyGroupBox;
         private System.Windows.Forms.TextBox mainActivityTxt;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;

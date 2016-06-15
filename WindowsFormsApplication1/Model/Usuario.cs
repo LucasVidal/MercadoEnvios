@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApplication1.Model
 {
-    class Usuario
+    public class Usuario
     {
         public int IdUsuario { get; set; }
         public string Username { get; set; }
@@ -20,11 +20,10 @@ namespace WindowsFormsApplication1.Model
         public string Depto { get; set; }
         public string Localidad { get; set; }
         public string CodigoPostal { get; set; }
-        public DateTime FechaDeCreacion { get; set; }
 
         public Usuario(int IdUsuario, string Username, string Password, int RolId, string Email,
             string Telefono, string Calle, string Numero, string Piso, string Depto, string Localidad,
-            string CodigoPostal, DateTime FechaDeCreacion)
+            string CodigoPostal)
         {
             this.IdUsuario = IdUsuario;
             this.Username = Username;
@@ -37,7 +36,6 @@ namespace WindowsFormsApplication1.Model
             this.Depto = Depto;
             this.Localidad = Localidad;
             this.CodigoPostal = CodigoPostal;
-            this.FechaDeCreacion = FechaDeCreacion;
         }
     }
 }
