@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApplication1
+﻿namespace MercadoEnvio
 {
     partial class Form1
     {

@@ -8,21 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MercadoEnvio.Base_De_Datos;
-using WindowsFormsApplication1.ABM_Usuario;
+using MercadoEnvio.ABM_Usuario;
 using MercadoEnvio.Abm_Rol;
-/*
-using MercadoEnvio.Abm_Ciudad;
-using MercadoEnvio.Registro_Llegada_Destino;
-using MercadoEnvio.Generacion_Viaje;
-using MercadoEnvio.Abm_Ruta;
-using MercadoEnvio.Compra;
-using MercadoEnvio.Consulta_Millas;
-using MercadoEnvio.Abm_Aeronave;
+using MercadoEnvio.Visibilidad;
 using MercadoEnvio.Listado_Estadistico;
-using MercadoEnvio.Abm_Rol;
-using MercadoEnvio.Canje_Millas;
-using MercadoEnvio.Registro_de_Usuario;
-*/
+using MercadoEnvio.Generar_Publicación;
 
 
 namespace MercadoEnvio.Abm_Menu
@@ -137,6 +127,8 @@ namespace MercadoEnvio.Abm_Menu
 
         private void button4_Click(object sender, EventArgs e)
         {
+            ABM_Visibilidad visibilidad = new ABM_Visibilidad();
+            visibilidad.Show();
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -149,6 +141,8 @@ namespace MercadoEnvio.Abm_Menu
 
         private void button10_Click(object sender, EventArgs e)
         {
+            Estadistica listado = new Estadistica();
+            listado.Show();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -169,7 +163,8 @@ namespace MercadoEnvio.Abm_Menu
 
         private void button8_Click(object sender, EventArgs e)
         {
-
+            Publicacion publica = new Publicacion();
+            publica.Show();
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
