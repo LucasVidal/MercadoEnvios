@@ -4,53 +4,53 @@ IF NOT EXISTS ( SELECT  * FROM sys.schemas WHERE name = 'Class' )
     EXEC('CREATE SCHEMA [DB] AUTHORIZATION [dbo]');
 GO
 --Drop de constraint si ya existen
-IF OBJECT_ID('Class.FK_Calificacion_Publicacion', 'F') IS NOT NULL
+IF OBJECT_ID('Class.FK_Calificacion_Publicacion', 'U') IS NOT NULL
 		alter table Class.Calificacion drop CONSTRAINT FK_Calificacion_Publicacion
-IF OBJECT_ID('Class.FK_Calificacion_Compra', 'F') IS NOT NULL
+IF OBJECT_ID('Class.FK_Calificacion_Compra', 'U') IS NOT NULL
 		alter table Class.Calificacion drop CONSTRAINT FK_Calificacion_Compra
-IF OBJECT_ID('Class.FK_Compra_Publicacion', 'F') IS NOT NULL
+IF OBJECT_ID('Class.FK_Compra_Publicacion', 'U') IS NOT NULL
 		alter table Class.Compra drop CONSTRAINT FK_Compra_Publicacion
-IF OBJECT_ID('Class.FK_Compra_Usuario', 'F') IS NOT NULL
+IF OBJECT_ID('Class.FK_Compra_Usuario', 'U') IS NOT NULL
 		alter table Class.Compra drop CONSTRAINT FK_Compra_Usuario
-IF OBJECT_ID('Class.FK_RolUsuario_Rol', 'F') IS NOT NULL
+IF OBJECT_ID('Class.FK_RolUsuario_Rol', 'U') IS NOT NULL
 		alter table Class.rolUsuario drop CONSTRAINT FK_RolUsuario_Rol
-IF OBJECT_ID('Class.FK_RolUsuario_Usuario', 'F') IS NOT NULL
+IF OBJECT_ID('Class.FK_RolUsuario_Usuario', 'U') IS NOT NULL
 		alter table Class.rolUsuario drop CONSTRAINT FK_RolUsuario_Usuario
-IF OBJECT_ID('Class.FK_Usuario_Rol', 'F') IS NOT NULL
-		alter table Class.Usuario drop CONSTRAINT FK_Usuario_Rol
-IF OBJECT_ID('Class.FK_Calificacion_Usuario_1', 'F') IS NOT NULL
+IF OBJECT_ID('Class.FK_Usuario_Rol', 'U') IS NOT NULL
+		alter table Class.Compra drop CONSTRAINT FK_Usuario_Rol
+IF OBJECT_ID('Class.FK_Calificacion_Usuario_1', 'U') IS NOT NULL
 		alter table Class.Calificacion drop CONSTRAINT FK_Calificacion_Usuario_1
-IF OBJECT_ID('Class.FK_Calificacion_Usuario_2', 'F') IS NOT NULL
+IF OBJECT_ID('Class.FK_Calificacion_Usuario_2', 'U') IS NOT NULL
 		alter table Class.Calificacion drop CONSTRAINT FK_Calificacion_Usuario_2
-IF OBJECT_ID('Class.FK_Compra_Usuario', 'F') IS NOT NULL
+IF OBJECT_ID('Class.FK_Compra_Usuario', 'U') IS NOT NULL
 		alter table Class.Compra drop CONSTRAINT FK_Compra_Usuario
-IF OBJECT_ID('Class.FK_Subasta_Usuario', 'F') IS NOT NULL
+IF OBJECT_ID('Class.FK_Subasta_Usuario', 'U') IS NOT NULL
 		alter table Class.Subasta drop CONSTRAINT FK_Subasta_Usuario
-IF OBJECT_ID('Class.FK_Publicacion_Usuario', 'F') IS NOT NULL
+IF OBJECT_ID('Class.FK_Publicacion_Usuario', 'U') IS NOT NULL
 		alter table Class.Publicacion drop CONSTRAINT FK_Publicacion_Usuario
-IF OBJECT_ID('Class.FK_Persona_Usuario', 'F') IS NOT NULL
+IF OBJECT_ID('Class.FK_Persona_Usuario', 'U') IS NOT NULL
 		alter table Class.Persona drop CONSTRAINT FK_Persona_Usuario
-IF OBJECT_ID('Class.FK_Empresa_Usuario', 'F') IS NOT NULL
+IF OBJECT_ID('Class.FK_Empresa_Usuario', 'U') IS NOT NULL
 		alter table Class.Empresa drop CONSTRAINT FK_Empresa_Usuario
-IF OBJECT_ID('Class.FK_Detalle_Publicacion', 'F') IS NOT NULL
+IF OBJECT_ID('Class.FK_Detalle_Publicacion', 'U') IS NOT NULL
 		alter table Class.Detalle drop CONSTRAINT FK_Detalle_Publicacion
-IF OBJECT_ID('Class.FK_Detalle_TipoItem', 'F') IS NOT NULL
+IF OBJECT_ID('Class.FK_Detalle_TipoItem', 'U') IS NOT NULL
 		alter table Class.Detalle drop CONSTRAINT FK_Detalle_TipoItem
-IF OBJECT_ID('Class.FK_Factura_Publicacion', 'F') IS NOT NULL
+IF OBJECT_ID('Class.FK_Factura_Publicacion', 'U') IS NOT NULL
 		alter table Class.Factura drop CONSTRAINT FK_Factura_Publicacion
-IF OBJECT_ID('Class.FK_Subasta_Publicacion', 'F') IS NOT NULL
+IF OBJECT_ID('Class.FK_Subasta_Publicacion', 'U') IS NOT NULL
 		alter table Class.Subasta drop CONSTRAINT FK_Subasta_Publicacion
-IF OBJECT_ID('Class.FK_Publicacion_Visibilidad', 'F') IS NOT NULL
+IF OBJECT_ID('Class.FK_Publicacion_Visibilidad', 'U') IS NOT NULL
 		alter table Class.Publicacion drop CONSTRAINT FK_Publicacion_Visibilidad
-IF OBJECT_ID('Class.FK_Publicacion_Rubro', 'F') IS NOT NULL
+IF OBJECT_ID('Class.FK_Publicacion_Rubro', 'U') IS NOT NULL
 		alter table Class.Publicacion drop CONSTRAINT FK_Publicacion_Rubro
-IF OBJECT_ID('Class.FK_Publicacion_TipoPublicacion', 'F') IS NOT NULL
+IF OBJECT_ID('Class.FK_Publicacion_TipoPublicacion', 'U') IS NOT NULL
 		alter table Class.Publicacion drop CONSTRAINT FK_Publicacion_TipoPublicacion
-IF OBJECT_ID('Class.FK_Publicacion_Estado', 'F') IS NOT NULL
+IF OBJECT_ID('Class.FK_Publicacion_Estado', 'U') IS NOT NULL
 		alter table Class.Publicacion drop CONSTRAINT FK_Publicacion_Estado
-IF OBJECT_ID('Class.FK_RolFuncionalidad_Rol', 'F') IS NOT NULL
+IF OBJECT_ID('Class.FK_RolFuncionalidad_Rol', 'U') IS NOT NULL
 		alter table Class.RolFuncionalidad drop CONSTRAINT FK_RolFuncionalidad_Rol
-IF OBJECT_ID('Class.FK_RolFuncionalidad_Funcionalidad', 'F') IS NOT NULL
+IF OBJECT_ID('Class.FK_RolFuncionalidad_Funcionalidad', 'U') IS NOT NULL
 		alter table Class.RolFuncionalidad drop CONSTRAINT FK_RolFuncionalidad_Funcionalidad
 --Drop de tablas si ya existen
 IF OBJECT_ID('Class.Compra', 'U') IS NOT NULL
@@ -141,6 +141,7 @@ CREATE TABLE Class.Usuario
 		Localidad		nvarchar(100),
 		CodigoPostal	nvarchar(100) not null,
 		FechaCreacion	date NOT NULL,
+		PublicacionesGratuitas int not null,
 		CONSTRAINT FK_Usuario_Rol FOREIGN KEY (IdRol) REFERENCES Class.Rol (IdRol)
 );
 
@@ -342,8 +343,8 @@ insert into class.RolFuncionalidad values (3,7,1)
 insert into class.RolFuncionalidad values (3,8,1)
 insert into class.RolFuncionalidad values (3,9,1)
 
-insert into class.Usuario (usuario,clave,EstaHabilitado,idrol,LoginFallidos,TipoDocumento,mail,calle,numero,CodigoPostal,FechaCreacion) values
-('admin',convert(varbinary,Class.psencriptar('w23e')),'1','1','0','','','',0,'',getdate())
+insert into class.Usuario (usuario,clave,EstaHabilitado,idrol,LoginFallidos,TipoDocumento,mail,calle,numero,CodigoPostal,FechaCreacion,PublicacionesGratuitas) values
+('admin',convert(varbinary,Class.psencriptar('w23e')),'1','1','0','','','',0,'',getdate(),0)
 
 insert into class.Usuario (usuario,clave,EstaHabilitado,idrol,LoginFallidos,TipoDocumento,mail,calle,numero,piso,Depto,CodigoPostal,FechaCreacion)
 (select Publ_Cli_Dni usuario,convert(varbinary,Class.psencriptar(CONVERT(nvarchar(4000), Publ_Cli_Dni))),1,2,0,'DNI',Publ_Cli_Mail mail,Publ_Cli_Dom_Calle calle,Publ_Cli_Nro_Calle nro,Publ_Cli_Piso piso,Publ_Cli_Depto depto,
@@ -456,7 +457,7 @@ where publicacion_tipo='subasta' and not(m1.Compra_Cantidad is null) and Calific
 order by Publicacion_Cod,Compra_Fecha
 
 --Carga de las calificaciones, hay que arreglarlo porque no se pueden cargar las calificaciones,
---ya que no funciona para las publicaciones en que un mismo cliente compro mas de 1 vez
+--ya que no funciona para las publicaciones en que un mismo cliente compro mas de 1 vez	
 select * from class.Calificacion
 insert into class.Calificacion (IdPublicacion,IdUsuarioPub,IdUsuarioCom,IdCompra,Calificacion)
 (select Publicacion.IdPublicacion,case when empresa.IdUsuario is null then p2.IdUsuario else empresa.IdUsuario end idusuariopub,p1.IdUsuario,compra.IdCompra,'0'
@@ -472,15 +473,43 @@ order by Publicacion.IdPublicacion
 GO
 COMMIT TRAN
 
-/*
-insert into class.Detalle (IdFactura,IdItem,Cantidad,Monto)
-(select IdFactura,'1',Item_Factura_Cantidad,item_factura_monto
-from gd_esquema.Maestra join class.factura on Factura_Nro=factura.Numero where Publicacion_Visibilidad_Cod='10006' and not(factura_nro is null) and Item_Factura_Cantidad=1 
-group by publicacion_cod,Factura_Nro,IdFactura,Item_Factura_Cantidad,item_factura_monto)
-order by publicacion_cod,Item_Factura_Cantidad
+GO
 
-insert into class.Detalle (IdFactura,IdItem,Cantidad,Monto)
-(select IdFactura,'2',Item_Factura_Cantidad,item_factura_monto,dense_rank() OVER(ORDER BY IdFactura)
-from gd_esquema.Maestra join class.factura on Factura_Nro=factura.Numero where Publicacion_Visibilidad_Cod='10006' and not(factura_nro is null))-- group by publicacion_cod,IdFactura,Item_Factura_Cantidad,item_factura_monto)
-order by publicacion_cod,Item_Factura_Cantidad
-*/
+CREATE PROCEDURE Class.VerificarPublicacionesGratis(@id_Usuario int)
+AS
+	BEGIN
+		DECLARE @parametro_retorno int;
+
+		BEGIN
+			SELECT @parametro_retorno = PublicacionesGratuitas
+			FROM Class.Usuario 
+			WHERE idUsuario = @id_Usuario
+		END
+		return @parametro_retorno;
+	END
+GO
+
+CREATE PROCEDURE Class.CrearPublicacion(@rubro varchar(max),@id_User int,@tipoPubl varchar(max),@tipoVisib varchar(max),@estado varchar(max),
+											@stock numeric(18,0), @descripcion varchar(max), @monto numeric(18,2),
+											@fecha_Vencim datetime, @fecha_Inicio datetime, @preguntas varchar(max),@permiteEnvio bit,@publicaciones_gratis tinyint)
+AS 
+	BEGIN
+		begin tran
+		insert into class.Publicacion(Descripcion,Stock,FechaInicio,FechaVencimiento,Precio,IdRubro,IdVisibilidad,IdUsuario,IdEstado,IdTipo,Envio)
+		values(@descripcion,@stock,@fecha_Inicio,@fecha_Vencim,@monto,@rubro,@tipoVisib,@id_User,@estado,@tipoPubl,@permiteEnvio)
+		if (@publicaciones_gratis >0)
+		   update class.Usuario set PublicacionesGratuitas=PublicacionesGratuitas-@publicaciones_gratis where IdUsuario=@id_User
+		else
+		   begin
+		      DECLARE @id_publi int 
+			  select  top 1 @id_publi=IdPublicacion from class.Publicacion order by IdPublicacion desc
+			  DECLARE @ultima_factura numeric(18,0)
+			  declare @ult_idfactura int
+			  select  top 1 @id_publi=Numero,@ult_idfactura=idfactura from class.Factura order by idfactura desc
+			  insert into class.factura (IdPublicacion,Numero,Total,Fecha,FormaPago)
+			  values(@id_publi+1,@ultima_factura+1,@monto,getdate(),'Efectivo')
+			  insert into class.detalle (idfactura,IdItem,Cantidad,Monto) values(@ult_idfactura,1,1,@monto)
+		   end
+		commit tran
+	end
+GO
