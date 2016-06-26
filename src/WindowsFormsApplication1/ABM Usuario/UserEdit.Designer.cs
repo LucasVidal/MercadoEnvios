@@ -51,8 +51,10 @@
             this.addressCityTxt = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.personGroupBox = new System.Windows.Forms.GroupBox();
-            this.companyRadioButton = new System.Windows.Forms.RadioButton();
-            this.personRadioButton = new System.Windows.Forms.RadioButton();
+            this.createdAtTxt = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.birthdateTxt = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
             this.IDNumberTxt = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -61,6 +63,8 @@
             this.label12 = new System.Windows.Forms.Label();
             this.surnameTxt = new System.Windows.Forms.TextBox();
             this.nameTxt = new System.Windows.Forms.TextBox();
+            this.companyRadioButton = new System.Windows.Forms.RadioButton();
+            this.personRadioButton = new System.Windows.Forms.RadioButton();
             this.companyGroupBox = new System.Windows.Forms.GroupBox();
             this.mainActivityTxt = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
@@ -70,10 +74,11 @@
             this.label19 = new System.Windows.Forms.Label();
             this.companyIDTxt = new System.Windows.Forms.TextBox();
             this.companyNameTxt = new System.Windows.Forms.TextBox();
-            this.createdAtTxt = new System.Windows.Forms.TextBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.birthdateTxt = new System.Windows.Forms.TextBox();
-            this.label21 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.addressDepartmentTxt = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.estaHabilitadoChk = new System.Windows.Forms.CheckBox();
             this.personGroupBox.SuspendLayout();
             this.companyGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -218,7 +223,7 @@
             // 
             // addressZipcodeTxt
             // 
-            this.addressZipcodeTxt.Location = new System.Drawing.Point(166, 223);
+            this.addressZipcodeTxt.Location = new System.Drawing.Point(166, 250);
             this.addressZipcodeTxt.Name = "addressZipcodeTxt";
             this.addressZipcodeTxt.Size = new System.Drawing.Size(121, 20);
             this.addressZipcodeTxt.TabIndex = 21;
@@ -226,7 +231,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(79, 226);
+            this.label9.Location = new System.Drawing.Point(79, 253);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(72, 13);
             this.label9.TabIndex = 22;
@@ -235,7 +240,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(79, 253);
+            this.label10.Location = new System.Drawing.Point(79, 280);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(53, 13);
             this.label10.TabIndex = 23;
@@ -243,7 +248,7 @@
             // 
             // addressCityTxt
             // 
-            this.addressCityTxt.Location = new System.Drawing.Point(166, 250);
+            this.addressCityTxt.Location = new System.Drawing.Point(166, 277);
             this.addressCityTxt.Name = "addressCityTxt";
             this.addressCityTxt.Size = new System.Drawing.Size(121, 20);
             this.addressCityTxt.TabIndex = 24;
@@ -251,7 +256,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(79, 199);
+            this.label11.Location = new System.Drawing.Point(79, 226);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(36, 13);
             this.label11.TabIndex = 25;
@@ -277,27 +282,37 @@
             this.personGroupBox.TabIndex = 32;
             this.personGroupBox.TabStop = false;
             // 
-            // companyRadioButton
+            // createdAtTxt
             // 
-            this.companyRadioButton.AutoSize = true;
-            this.companyRadioButton.Location = new System.Drawing.Point(391, 277);
-            this.companyRadioButton.Name = "companyRadioButton";
-            this.companyRadioButton.Size = new System.Drawing.Size(66, 17);
-            this.companyRadioButton.TabIndex = 17;
-            this.companyRadioButton.TabStop = true;
-            this.companyRadioButton.Text = "Empresa";
-            this.companyRadioButton.UseVisualStyleBackColor = true;
+            this.createdAtTxt.Location = new System.Drawing.Point(125, 162);
+            this.createdAtTxt.Name = "createdAtTxt";
+            this.createdAtTxt.Size = new System.Drawing.Size(121, 20);
+            this.createdAtTxt.TabIndex = 43;
             // 
-            // personRadioButton
+            // label20
             // 
-            this.personRadioButton.AutoSize = true;
-            this.personRadioButton.Location = new System.Drawing.Point(393, 105);
-            this.personRadioButton.Name = "personRadioButton";
-            this.personRadioButton.Size = new System.Drawing.Size(64, 17);
-            this.personRadioButton.TabIndex = 16;
-            this.personRadioButton.TabStop = true;
-            this.personRadioButton.Text = "Persona";
-            this.personRadioButton.UseVisualStyleBackColor = true;
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(20, 165);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(97, 13);
+            this.label20.TabIndex = 42;
+            this.label20.Text = "Fecha de Creacion";
+            // 
+            // birthdateTxt
+            // 
+            this.birthdateTxt.Location = new System.Drawing.Point(125, 133);
+            this.birthdateTxt.Name = "birthdateTxt";
+            this.birthdateTxt.Size = new System.Drawing.Size(121, 20);
+            this.birthdateTxt.TabIndex = 41;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(20, 136);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(106, 13);
+            this.label21.TabIndex = 40;
+            this.label21.Text = "Fecha de nacimiento";
             // 
             // IDNumberTxt
             // 
@@ -362,6 +377,28 @@
             this.nameTxt.Name = "nameTxt";
             this.nameTxt.Size = new System.Drawing.Size(121, 20);
             this.nameTxt.TabIndex = 32;
+            // 
+            // companyRadioButton
+            // 
+            this.companyRadioButton.AutoSize = true;
+            this.companyRadioButton.Location = new System.Drawing.Point(391, 277);
+            this.companyRadioButton.Name = "companyRadioButton";
+            this.companyRadioButton.Size = new System.Drawing.Size(66, 17);
+            this.companyRadioButton.TabIndex = 17;
+            this.companyRadioButton.TabStop = true;
+            this.companyRadioButton.Text = "Empresa";
+            this.companyRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // personRadioButton
+            // 
+            this.personRadioButton.AutoSize = true;
+            this.personRadioButton.Location = new System.Drawing.Point(393, 105);
+            this.personRadioButton.Name = "personRadioButton";
+            this.personRadioButton.Size = new System.Drawing.Size(64, 17);
+            this.personRadioButton.TabIndex = 16;
+            this.personRadioButton.TabStop = true;
+            this.personRadioButton.Text = "Persona";
+            this.personRadioButton.UseVisualStyleBackColor = true;
             // 
             // companyGroupBox
             // 
@@ -443,43 +480,61 @@
             this.companyNameTxt.Size = new System.Drawing.Size(121, 20);
             this.companyNameTxt.TabIndex = 32;
             // 
-            // createdAtTxt
+            // button1
             // 
-            this.createdAtTxt.Location = new System.Drawing.Point(125, 162);
-            this.createdAtTxt.Name = "createdAtTxt";
-            this.createdAtTxt.Size = new System.Drawing.Size(121, 20);
-            this.createdAtTxt.TabIndex = 43;
+            this.button1.Location = new System.Drawing.Point(659, 409);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 41;
+            this.button1.Text = "Guardar";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // label20
+            // button2
             // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(20, 165);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(97, 13);
-            this.label20.TabIndex = 42;
-            this.label20.Text = "Fecha de Creacion";
+            this.button2.Location = new System.Drawing.Point(578, 409);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 42;
+            this.button2.Text = "Cancelar";
+            this.button2.UseVisualStyleBackColor = true;
             // 
-            // birthdateTxt
+            // addressDepartmentTxt
             // 
-            this.birthdateTxt.Location = new System.Drawing.Point(125, 133);
-            this.birthdateTxt.Name = "birthdateTxt";
-            this.birthdateTxt.Size = new System.Drawing.Size(121, 20);
-            this.birthdateTxt.TabIndex = 41;
+            this.addressDepartmentTxt.Location = new System.Drawing.Point(166, 223);
+            this.addressDepartmentTxt.Name = "addressDepartmentTxt";
+            this.addressDepartmentTxt.Size = new System.Drawing.Size(121, 20);
+            this.addressDepartmentTxt.TabIndex = 43;
             // 
-            // label21
+            // label22
             // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(20, 136);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(106, 13);
-            this.label21.TabIndex = 40;
-            this.label21.Text = "Fecha de nacimiento";
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(79, 199);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(27, 13);
+            this.label22.TabIndex = 44;
+            this.label22.Text = "Piso";
+            // 
+            // estaHabilitadoChk
+            // 
+            this.estaHabilitadoChk.AutoSize = true;
+            this.estaHabilitadoChk.Location = new System.Drawing.Point(499, 413);
+            this.estaHabilitadoChk.Name = "estaHabilitadoChk";
+            this.estaHabilitadoChk.Size = new System.Drawing.Size(73, 17);
+            this.estaHabilitadoChk.TabIndex = 45;
+            this.estaHabilitadoChk.Text = "Habilitado";
+            this.estaHabilitadoChk.UseVisualStyleBackColor = true;
             // 
             // UserEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(779, 418);
+            this.ClientSize = new System.Drawing.Size(779, 489);
+            this.Controls.Add(this.estaHabilitadoChk);
+            this.Controls.Add(this.label22);
+            this.Controls.Add(this.addressDepartmentTxt);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.companyGroupBox);
             this.Controls.Add(this.companyRadioButton);
             this.Controls.Add(this.personGroupBox);
@@ -566,5 +621,10 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.TextBox companyIDTxt;
         private System.Windows.Forms.TextBox companyNameTxt;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox addressDepartmentTxt;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.CheckBox estaHabilitadoChk;
     }
 }

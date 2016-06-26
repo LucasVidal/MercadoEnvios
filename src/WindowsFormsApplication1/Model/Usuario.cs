@@ -20,10 +20,12 @@ namespace WindowsFormsApplication1.Model
         public string Depto { get; set; }
         public string Localidad { get; set; }
         public string CodigoPostal { get; set; }
+        public DateTime FechaDeCreacion { get; set; }
+        public bool EstaHabilitado { get; set; }
 
         public Usuario(int IdUsuario, string Username, string Password, int RolId, string Email,
             string Telefono, string Calle, string Numero, string Piso, string Depto, string Localidad,
-            string CodigoPostal)
+            string CodigoPostal, DateTime FechaDeCreacion, bool EstaHabilitado)
         {
             this.IdUsuario = IdUsuario;
             this.Username = Username;
@@ -36,6 +38,8 @@ namespace WindowsFormsApplication1.Model
             this.Depto = Depto;
             this.Localidad = Localidad;
             this.CodigoPostal = CodigoPostal;
+            this.FechaDeCreacion = FechaDeCreacion;
+            this.EstaHabilitado = EstaHabilitado;
         }
     }
 }

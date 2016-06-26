@@ -31,6 +31,8 @@ namespace MercadoEnvio.ABM_Usuario
 
         private void button1_Click(object sender, EventArgs e)
         {
+            UserEdit userEdit = new UserEdit();
+            userEdit.Show();
         }
 
         private void editUserBtn_Click(object sender, EventArgs e)

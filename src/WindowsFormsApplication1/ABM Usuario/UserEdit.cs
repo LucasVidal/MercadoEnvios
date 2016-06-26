@@ -29,18 +29,24 @@ namespace WindowsFormsApplication1.ABM_Usuario
             this.User = usersDao.get(user_id);
         }
 
-        private void loadUser(int user_id)
+        private void UserEdit_Load(object sender, EventArgs e)
         {
-            String query = "SELECT * FROM Class.Usuario WHERE idusuario = " + user_id.ToString();
-            DataTable user = new DataTable();
-            user = Conexion.LeerTabla(query);
+            if (this.User != null) {
+                if (this.User.GetType() == typeof(Persona))
+                {
+                    showPersona((Persona)this.User);
+                }
+                else
+                {
+                    showEmpresa((Empresa)this.User);
+                }
+            }
         }
 
-        private void UserEdit_Load(object sender, EventArgs e)
+        private void showUsuario(Usuario user)
         {
             //common fields
             RoleDAO roleDao = new RoleDAO();
-            Usuario user = this.User;
             idLbl.Text = user.IdUsuario.ToString();
             usernameTxt.Text = user.Username;
             emailTxt.Text = user.Email;
@@ -50,7 +56,7 @@ namespace WindowsFormsApplication1.ABM_Usuario
             addressFloorTxt.Text = user.Depto;
             addressZipcodeTxt.Text = user.CodigoPostal;
             addressCityTxt.Text = user.Localidad;
-
+            estaHabilitadoChk.Checked = user.EstaHabilitado;
             List<Rol> roles = roleDao.getAllRoles();
             foreach (Rol rol in roles)
             {
@@ -60,32 +66,61 @@ namespace WindowsFormsApplication1.ABM_Usuario
                     rolCmb.SelectedIndex = roles.IndexOf(rol);
                 }
             }
-            
-            if (this.User.GetType() == typeof(Persona))
-            {
-                personRadioButton.Select();
-                Persona persona = (Persona)this.User;
+        }
 
-                //Persona fields
-                nameTxt.Text = persona.Nombre;
-                surnameTxt.Text = persona.Apellido;
-                IDTypeTxt.Text = persona.TipoDeDocumento;
-                IDNumberTxt.Text = persona.DNI;
-                birthdateTxt.Text = persona.FechaDeNacimiento.ToString();
-                createdAtTxt.Text = persona.FechaDeCreacion.ToString();
+        private void showEmpresa(Empresa empresa)
+        {
+            showUsuario(empresa);
+            companyRadioButton.Select();
+
+            //Empresa fields
+            companyNameTxt.Text = empresa.RazonSocial;
+            companyIDTxt.Text = empresa.CUIT;
+            contactNameTxt.Text = empresa.NombreDeContacto;
+            mainActivityTxt.Text = empresa.Rubro;
+        }
+
+        private void showPersona(Persona persona)
+        {
+            showUsuario(persona);
+            personRadioButton.Select();
+
+            //Persona fields
+            nameTxt.Text = persona.Nombre;
+            surnameTxt.Text = persona.Apellido;
+            IDTypeTxt.Text = persona.TipoDeDocumento;
+            IDNumberTxt.Text = persona.DNI;
+            birthdateTxt.Text = persona.FechaDeNacimiento.ToString();
+            createdAtTxt.Text = persona.FechaDeCreacion.ToString();
+        }
+
+        private void personGroupBox_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            UsersDAO usersDAO = new UsersDAO();
+            int oldId = this.User == null ? -1 : this.User.IdUsuario;
+            Rol rol = (Rol)rolCmb.SelectedItem;
+            if (personRadioButton.Checked)
+            {
+                this.User = new Persona(oldId, usernameTxt.Text, passwordTxt.Text, rol.IdRol,
+                    nameTxt.Text, surnameTxt.Text, IDNumberTxt.Text, IDTypeTxt.Text, emailTxt.Text, phoneTxt.Text,
+                    addressStreetTxt.Text, addressNumberTxt.Text, addressFloorTxt.Text, addressDepartmentTxt.Text,
+                    addressCityTxt.Text, addressZipcodeTxt.Text, DateTime.Parse(birthdateTxt.Text),
+                    DateTime.Parse(createdAtTxt.Text), estaHabilitadoChk.Checked);
             }
             else
             {
-                companyRadioButton.Select();
-                Empresa empresa = (Empresa)this.User;
-
-                //Empresa fields
-                companyNameTxt.Text = empresa.RazonSocial;
-                companyIDTxt.Text = empresa.CUIT;
-                contactNameTxt.Text = empresa.NombreDeContacto;
-                mainActivityTxt.Text = empresa.Rubro;
+                this.User = new Empresa(oldId, usernameTxt.Text, passwordTxt.Text, rol.IdRol,
+                    companyNameTxt.Text, companyIDTxt.Text, emailTxt.Text, phoneTxt.Text, addressStreetTxt.Text,
+                    addressNumberTxt.Text, addressFloorTxt.Text, addressDepartmentTxt.Text, addressCityTxt.Text,
+                    addressZipcodeTxt.Text, contactNameTxt.Text, mainActivityTxt.Text,
+                    DateTime.Parse(createdAtTxt.Text), estaHabilitadoChk.Checked);
             }
-
+            usersDAO.save(this.User);
         }
     }
 }
