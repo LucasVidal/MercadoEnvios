@@ -4,53 +4,53 @@ IF NOT EXISTS ( SELECT  * FROM sys.schemas WHERE name = 'Class' )
     EXEC('CREATE SCHEMA [DB] AUTHORIZATION [dbo]');
 GO
 --Drop de constraint si ya existen
-IF OBJECT_ID('Class.FK_Calificacion_Publicacion', 'U') IS NOT NULL
+IF OBJECT_ID('Class.FK_Calificacion_Publicacion', 'F') IS NOT NULL
 		alter table Class.Calificacion drop CONSTRAINT FK_Calificacion_Publicacion
-IF OBJECT_ID('Class.FK_Calificacion_Compra', 'U') IS NOT NULL
+IF OBJECT_ID('Class.FK_Calificacion_Compra', 'F') IS NOT NULL
 		alter table Class.Calificacion drop CONSTRAINT FK_Calificacion_Compra
-IF OBJECT_ID('Class.FK_Compra_Publicacion', 'U') IS NOT NULL
+IF OBJECT_ID('Class.FK_Compra_Publicacion', 'F') IS NOT NULL
 		alter table Class.Compra drop CONSTRAINT FK_Compra_Publicacion
-IF OBJECT_ID('Class.FK_Compra_Usuario', 'U') IS NOT NULL
+IF OBJECT_ID('Class.FK_Compra_Usuario', 'F') IS NOT NULL
 		alter table Class.Compra drop CONSTRAINT FK_Compra_Usuario
-IF OBJECT_ID('Class.FK_RolUsuario_Rol', 'U') IS NOT NULL
+IF OBJECT_ID('Class.FK_RolUsuario_Rol', 'F') IS NOT NULL
 		alter table Class.rolUsuario drop CONSTRAINT FK_RolUsuario_Rol
-IF OBJECT_ID('Class.FK_RolUsuario_Usuario', 'U') IS NOT NULL
+IF OBJECT_ID('Class.FK_RolUsuario_Usuario', 'F') IS NOT NULL
 		alter table Class.rolUsuario drop CONSTRAINT FK_RolUsuario_Usuario
-IF OBJECT_ID('Class.FK_Usuario_Rol', 'U') IS NOT NULL
-		alter table Class.Compra drop CONSTRAINT FK_Usuario_Rol
-IF OBJECT_ID('Class.FK_Calificacion_Usuario_1', 'U') IS NOT NULL
+IF OBJECT_ID('Class.FK_Usuario_Rol', 'F') IS NOT NULL
+		alter table Class.Usuario drop CONSTRAINT FK_Usuario_Rol
+IF OBJECT_ID('Class.FK_Calificacion_Usuario_1', 'F') IS NOT NULL
 		alter table Class.Calificacion drop CONSTRAINT FK_Calificacion_Usuario_1
-IF OBJECT_ID('Class.FK_Calificacion_Usuario_2', 'U') IS NOT NULL
+IF OBJECT_ID('Class.FK_Calificacion_Usuario_2', 'F') IS NOT NULL
 		alter table Class.Calificacion drop CONSTRAINT FK_Calificacion_Usuario_2
-IF OBJECT_ID('Class.FK_Compra_Usuario', 'U') IS NOT NULL
+IF OBJECT_ID('Class.FK_Compra_Usuario', 'F') IS NOT NULL
 		alter table Class.Compra drop CONSTRAINT FK_Compra_Usuario
-IF OBJECT_ID('Class.FK_Subasta_Usuario', 'U') IS NOT NULL
+IF OBJECT_ID('Class.FK_Subasta_Usuario', 'F') IS NOT NULL
 		alter table Class.Subasta drop CONSTRAINT FK_Subasta_Usuario
-IF OBJECT_ID('Class.FK_Publicacion_Usuario', 'U') IS NOT NULL
+IF OBJECT_ID('Class.FK_Publicacion_Usuario', 'F') IS NOT NULL
 		alter table Class.Publicacion drop CONSTRAINT FK_Publicacion_Usuario
-IF OBJECT_ID('Class.FK_Persona_Usuario', 'U') IS NOT NULL
+IF OBJECT_ID('Class.FK_Persona_Usuario', 'F') IS NOT NULL
 		alter table Class.Persona drop CONSTRAINT FK_Persona_Usuario
-IF OBJECT_ID('Class.FK_Empresa_Usuario', 'U') IS NOT NULL
+IF OBJECT_ID('Class.FK_Empresa_Usuario', 'F') IS NOT NULL
 		alter table Class.Empresa drop CONSTRAINT FK_Empresa_Usuario
-IF OBJECT_ID('Class.FK_Detalle_Publicacion', 'U') IS NOT NULL
+IF OBJECT_ID('Class.FK_Detalle_Publicacion', 'F') IS NOT NULL
 		alter table Class.Detalle drop CONSTRAINT FK_Detalle_Publicacion
-IF OBJECT_ID('Class.FK_Detalle_TipoItem', 'U') IS NOT NULL
+IF OBJECT_ID('Class.FK_Detalle_TipoItem', 'F') IS NOT NULL
 		alter table Class.Detalle drop CONSTRAINT FK_Detalle_TipoItem
-IF OBJECT_ID('Class.FK_Factura_Publicacion', 'U') IS NOT NULL
+IF OBJECT_ID('Class.FK_Factura_Publicacion', 'F') IS NOT NULL
 		alter table Class.Factura drop CONSTRAINT FK_Factura_Publicacion
-IF OBJECT_ID('Class.FK_Subasta_Publicacion', 'U') IS NOT NULL
+IF OBJECT_ID('Class.FK_Subasta_Publicacion', 'F') IS NOT NULL
 		alter table Class.Subasta drop CONSTRAINT FK_Subasta_Publicacion
-IF OBJECT_ID('Class.FK_Publicacion_Visibilidad', 'U') IS NOT NULL
+IF OBJECT_ID('Class.FK_Publicacion_Visibilidad', 'F') IS NOT NULL
 		alter table Class.Publicacion drop CONSTRAINT FK_Publicacion_Visibilidad
-IF OBJECT_ID('Class.FK_Publicacion_Rubro', 'U') IS NOT NULL
+IF OBJECT_ID('Class.FK_Publicacion_Rubro', 'F') IS NOT NULL
 		alter table Class.Publicacion drop CONSTRAINT FK_Publicacion_Rubro
-IF OBJECT_ID('Class.FK_Publicacion_TipoPublicacion', 'U') IS NOT NULL
+IF OBJECT_ID('Class.FK_Publicacion_TipoPublicacion', 'F') IS NOT NULL
 		alter table Class.Publicacion drop CONSTRAINT FK_Publicacion_TipoPublicacion
-IF OBJECT_ID('Class.FK_Publicacion_Estado', 'U') IS NOT NULL
+IF OBJECT_ID('Class.FK_Publicacion_Estado', 'F') IS NOT NULL
 		alter table Class.Publicacion drop CONSTRAINT FK_Publicacion_Estado
-IF OBJECT_ID('Class.FK_RolFuncionalidad_Rol', 'U') IS NOT NULL
+IF OBJECT_ID('Class.FK_RolFuncionalidad_Rol', 'F') IS NOT NULL
 		alter table Class.RolFuncionalidad drop CONSTRAINT FK_RolFuncionalidad_Rol
-IF OBJECT_ID('Class.FK_RolFuncionalidad_Funcionalidad', 'U') IS NOT NULL
+IF OBJECT_ID('Class.FK_RolFuncionalidad_Funcionalidad', 'F') IS NOT NULL
 		alter table Class.RolFuncionalidad drop CONSTRAINT FK_RolFuncionalidad_Funcionalidad
 --Drop de tablas si ya existen
 IF OBJECT_ID('Class.Compra', 'U') IS NOT NULL
@@ -132,7 +132,7 @@ CREATE TABLE Class.Usuario
 		LoginFallidos	int NOT NULL DEFAULT 0,
 		TipoDocumento	nvarchar(4) NOT NULL,
 		Mail			nvarchar(255) NOT NULL,
-		Telefono		numeric(18,0),
+		Telefono		nvarchar(20),
 		Ciudad			nvarchar(100),
 		Calle			nvarchar(200) not null,
 		Numero			numeric(9) not null,
