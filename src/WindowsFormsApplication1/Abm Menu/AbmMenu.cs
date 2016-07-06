@@ -30,8 +30,11 @@ namespace MercadoEnvio.Abm_Menu
             //
         }
 
+        private string IdUsuario { get; set; }
+
         public void CargarMenu(string idusuario,string usuario, DateTime appDate)
         {
+            this.IdUsuario = idusuario;
             textBox1.Text = usuario;
             textBox1.Enabled = false;
             textBox2.Text = appDate.ToShortDateString();//.Date.ToString().Trim();
@@ -205,6 +208,12 @@ namespace MercadoEnvio.Abm_Menu
         private void AbmMenu_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void changePasswordBtn_Click(object sender, EventArgs e)
+        {
+            ChangePassword changePassword = new ChangePassword(this.IdUsuario);
+            changePassword.Show();
         }
 
     }

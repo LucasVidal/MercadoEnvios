@@ -211,5 +211,13 @@ namespace WindowsFormsApplication1.Base_De_Datos
                 "Eliminado = 1 where IdUsuario = " + userId + ";";
             int result = Conexion.EjecutarComando(query);
         }
+
+        public void ChangePassword(int userId, string newPassword)
+        {
+            String query = "update class.Usuario set " +
+                "Clave =convert(varbinary,convert(nvarchar(4000),Class.psencriptar('" + newPassword + "'))) " +
+                "WHERE IdUsuario = " + userId + ";";
+            int result = Conexion.EjecutarComando(query);
+        }
     }
 }
