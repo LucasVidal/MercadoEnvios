@@ -15,11 +15,11 @@ namespace WindowsFormsApplication1.Model
         public DateTime FechaDeNacimiento { get; set; }
         public DateTime FechaDeCreacion { get; set; }
 
-        public Persona(int IdUsuario, string Username, string Password, int RolId, string Nombre, string Apellido,
+        public Persona(int IdUsuario, string Username, int RolId, string Nombre, string Apellido,
             string DNI, string TipoDeDocumento, string Email, string Telefono, string Calle, string Numero, 
             string Piso, string Depto, string Localidad, string CodigoPostal, DateTime FechaDeNacimiento, 
             DateTime FechaDeCreacion, bool EstaHabilitado)
-            : base(IdUsuario, Username, Password, RolId, Email, Telefono, Calle, Numero, Piso, Depto, Localidad,
+            : base(IdUsuario, Username, RolId, Email, Telefono, Calle, Numero, Piso, Depto, Localidad,
             CodigoPostal, EstaHabilitado)
         {
             this.Nombre = Nombre;

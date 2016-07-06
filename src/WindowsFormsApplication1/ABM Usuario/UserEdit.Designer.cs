@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.usernameTxt = new System.Windows.Forms.TextBox();
-            this.passwordTxt = new System.Windows.Forms.TextBox();
             this.rolCmb = new System.Windows.Forms.ComboBox();
             this.idLbl = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -39,7 +38,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.emailTxt = new System.Windows.Forms.TextBox();
             this.phoneTxt = new System.Windows.Forms.TextBox();
             this.addressStreetTxt = new System.Windows.Forms.TextBox();
@@ -79,29 +77,24 @@
             this.addressDepartmentTxt = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.estaHabilitadoChk = new System.Windows.Forms.CheckBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.passwordTxt = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.personGroupBox.SuspendLayout();
             this.companyGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // usernameTxt
             // 
-            this.usernameTxt.Location = new System.Drawing.Point(166, 37);
+            this.usernameTxt.Location = new System.Drawing.Point(166, 43);
             this.usernameTxt.Name = "usernameTxt";
             this.usernameTxt.Size = new System.Drawing.Size(121, 20);
             this.usernameTxt.TabIndex = 0;
             // 
-            // passwordTxt
-            // 
-            this.passwordTxt.Location = new System.Drawing.Point(166, 354);
-            this.passwordTxt.Name = "passwordTxt";
-            this.passwordTxt.Size = new System.Drawing.Size(121, 20);
-            this.passwordTxt.TabIndex = 1;
-            this.passwordTxt.UseSystemPasswordChar = true;
-            // 
             // rolCmb
             // 
             this.rolCmb.FormattingEnabled = true;
-            this.rolCmb.Location = new System.Drawing.Point(166, 63);
+            this.rolCmb.Location = new System.Drawing.Point(166, 69);
             this.rolCmb.Name = "rolCmb";
             this.rolCmb.Size = new System.Drawing.Size(121, 21);
             this.rolCmb.TabIndex = 3;
@@ -109,7 +102,7 @@
             // idLbl
             // 
             this.idLbl.AutoSize = true;
-            this.idLbl.Location = new System.Drawing.Point(163, 12);
+            this.idLbl.Location = new System.Drawing.Point(163, 18);
             this.idLbl.Name = "idLbl";
             this.idLbl.Size = new System.Drawing.Size(18, 13);
             this.idLbl.TabIndex = 4;
@@ -118,7 +111,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(79, 12);
+            this.label1.Location = new System.Drawing.Point(79, 18);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(18, 13);
             this.label1.TabIndex = 7;
@@ -127,7 +120,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(79, 40);
+            this.label2.Location = new System.Drawing.Point(79, 46);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(55, 13);
             this.label2.TabIndex = 8;
@@ -145,7 +138,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(79, 93);
+            this.label4.Location = new System.Drawing.Point(79, 99);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(32, 13);
             this.label4.TabIndex = 10;
@@ -154,7 +147,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(79, 119);
+            this.label5.Location = new System.Drawing.Point(79, 125);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(49, 13);
             this.label5.TabIndex = 11;
@@ -163,7 +156,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(79, 145);
+            this.label6.Location = new System.Drawing.Point(79, 151);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(30, 13);
             this.label6.TabIndex = 12;
@@ -172,59 +165,50 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(79, 172);
+            this.label7.Location = new System.Drawing.Point(79, 178);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(44, 13);
             this.label7.TabIndex = 13;
             this.label7.Text = "Numero";
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(79, 357);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(53, 13);
-            this.label8.TabIndex = 14;
-            this.label8.Text = "Password";
-            // 
             // emailTxt
             // 
-            this.emailTxt.Location = new System.Drawing.Point(166, 90);
+            this.emailTxt.Location = new System.Drawing.Point(166, 96);
             this.emailTxt.Name = "emailTxt";
             this.emailTxt.Size = new System.Drawing.Size(121, 20);
             this.emailTxt.TabIndex = 16;
             // 
             // phoneTxt
             // 
-            this.phoneTxt.Location = new System.Drawing.Point(166, 116);
+            this.phoneTxt.Location = new System.Drawing.Point(166, 122);
             this.phoneTxt.Name = "phoneTxt";
             this.phoneTxt.Size = new System.Drawing.Size(121, 20);
             this.phoneTxt.TabIndex = 17;
             // 
             // addressStreetTxt
             // 
-            this.addressStreetTxt.Location = new System.Drawing.Point(166, 142);
+            this.addressStreetTxt.Location = new System.Drawing.Point(166, 148);
             this.addressStreetTxt.Name = "addressStreetTxt";
             this.addressStreetTxt.Size = new System.Drawing.Size(121, 20);
             this.addressStreetTxt.TabIndex = 18;
             // 
             // addressNumberTxt
             // 
-            this.addressNumberTxt.Location = new System.Drawing.Point(166, 169);
+            this.addressNumberTxt.Location = new System.Drawing.Point(166, 175);
             this.addressNumberTxt.Name = "addressNumberTxt";
             this.addressNumberTxt.Size = new System.Drawing.Size(121, 20);
             this.addressNumberTxt.TabIndex = 19;
             // 
             // addressFloorTxt
             // 
-            this.addressFloorTxt.Location = new System.Drawing.Point(166, 196);
+            this.addressFloorTxt.Location = new System.Drawing.Point(166, 202);
             this.addressFloorTxt.Name = "addressFloorTxt";
             this.addressFloorTxt.Size = new System.Drawing.Size(121, 20);
             this.addressFloorTxt.TabIndex = 20;
             // 
             // addressZipcodeTxt
             // 
-            this.addressZipcodeTxt.Location = new System.Drawing.Point(166, 250);
+            this.addressZipcodeTxt.Location = new System.Drawing.Point(166, 256);
             this.addressZipcodeTxt.Name = "addressZipcodeTxt";
             this.addressZipcodeTxt.Size = new System.Drawing.Size(121, 20);
             this.addressZipcodeTxt.TabIndex = 22;
@@ -232,7 +216,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(79, 253);
+            this.label9.Location = new System.Drawing.Point(79, 259);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(72, 13);
             this.label9.TabIndex = 22;
@@ -241,7 +225,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(79, 280);
+            this.label10.Location = new System.Drawing.Point(79, 286);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(53, 13);
             this.label10.TabIndex = 23;
@@ -249,7 +233,7 @@
             // 
             // addressCityTxt
             // 
-            this.addressCityTxt.Location = new System.Drawing.Point(166, 277);
+            this.addressCityTxt.Location = new System.Drawing.Point(166, 283);
             this.addressCityTxt.Name = "addressCityTxt";
             this.addressCityTxt.Size = new System.Drawing.Size(121, 20);
             this.addressCityTxt.TabIndex = 24;
@@ -257,7 +241,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(79, 226);
+            this.label11.Location = new System.Drawing.Point(79, 232);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(36, 13);
             this.label11.TabIndex = 25;
@@ -505,7 +489,7 @@
             // 
             // addressDepartmentTxt
             // 
-            this.addressDepartmentTxt.Location = new System.Drawing.Point(166, 223);
+            this.addressDepartmentTxt.Location = new System.Drawing.Point(166, 229);
             this.addressDepartmentTxt.Name = "addressDepartmentTxt";
             this.addressDepartmentTxt.Size = new System.Drawing.Size(121, 20);
             this.addressDepartmentTxt.TabIndex = 21;
@@ -513,7 +497,7 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(79, 199);
+            this.label22.Location = new System.Drawing.Point(79, 204);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(27, 13);
             this.label22.TabIndex = 44;
@@ -524,18 +508,47 @@
             this.estaHabilitadoChk.AutoSize = true;
             this.estaHabilitadoChk.Checked = true;
             this.estaHabilitadoChk.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.estaHabilitadoChk.Location = new System.Drawing.Point(499, 413);
+            this.estaHabilitadoChk.Location = new System.Drawing.Point(231, 14);
             this.estaHabilitadoChk.Name = "estaHabilitadoChk";
             this.estaHabilitadoChk.Size = new System.Drawing.Size(73, 17);
             this.estaHabilitadoChk.TabIndex = 41;
             this.estaHabilitadoChk.Text = "Habilitado";
             this.estaHabilitadoChk.UseVisualStyleBackColor = true;
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(463, 409);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(109, 32);
+            this.button3.TabIndex = 46;
+            this.button3.Text = "Cambiar Password";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // passwordTxt
+            // 
+            this.passwordTxt.Location = new System.Drawing.Point(166, 309);
+            this.passwordTxt.Name = "passwordTxt";
+            this.passwordTxt.Size = new System.Drawing.Size(121, 20);
+            this.passwordTxt.TabIndex = 25;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(79, 316);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(53, 13);
+            this.label8.TabIndex = 48;
+            this.label8.Text = "Password";
+            // 
             // UserEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(779, 489);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.passwordTxt);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.estaHabilitadoChk);
             this.Controls.Add(this.label22);
             this.Controls.Add(this.addressDepartmentTxt);
@@ -555,7 +568,6 @@
             this.Controls.Add(this.addressStreetTxt);
             this.Controls.Add(this.phoneTxt);
             this.Controls.Add(this.emailTxt);
-            this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -565,7 +577,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.idLbl);
             this.Controls.Add(this.rolCmb);
-            this.Controls.Add(this.passwordTxt);
             this.Controls.Add(this.usernameTxt);
             this.Name = "UserEdit";
             this.Text = "UserEdit";
@@ -582,7 +593,6 @@
         #endregion
 
         private System.Windows.Forms.TextBox usernameTxt;
-        private System.Windows.Forms.TextBox passwordTxt;
         private System.Windows.Forms.ComboBox rolCmb;
         private System.Windows.Forms.Label idLbl;
         private System.Windows.Forms.Label label1;
@@ -592,7 +602,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox emailTxt;
         private System.Windows.Forms.TextBox phoneTxt;
         private System.Windows.Forms.TextBox addressStreetTxt;
@@ -632,5 +641,8 @@
         private System.Windows.Forms.TextBox addressDepartmentTxt;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.CheckBox estaHabilitadoChk;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TextBox passwordTxt;
+        private System.Windows.Forms.Label label8;
     }
 }
