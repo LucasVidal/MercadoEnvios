@@ -165,24 +165,47 @@ namespace WindowsFormsApplication1.ABM_Usuario
                 MessageBox.Show("Debe elegir un rol").ToString();
                 return false;
             }
-            if (personRadioButton.Checked)  
+            UsersDAO usersDao = new UsersDAO();
+            int existingId = usersDao.FindByUserName(usernameTxt.Text);
+            if (existingId != -1 && 
+                (this.User == null || existingId != this.User.IdUsuario)
+                )
+            {
+                MessageBox.Show("El nombre de usuario esta en uso").ToString();
+                return false;
+            }
+
+            if (personRadioButton.Checked)
             {
                 try
                 {
                     DateTime createdAt = DateTime.Parse(createdAtTxt.Text);
                     DateTime birthDate = DateTime.Parse(birthdateTxt.Text);
                 }
-                catch {
+                catch
+                {
                     MessageBox.Show("Error en uno de los campos de fecha").ToString();
-                   return false;
+                    return false;
+                }
+                existingId = usersDao.FindByDNI(IDTypeTxt.Text.Trim(), IDNumberTxt.Text.Trim());
+                if (existingId != -1 &&
+                    (this.User == null || existingId != this.User.IdUsuario)
+                    )
+                {
+                    MessageBox.Show("Ya existe un usuario con ese DNI").ToString();
+                    return false;
                 }
             }
-
-            UsersDAO usersDao = new UsersDAO();
-            if (!usersDao.UsernameIsAvailable(usernameTxt.Text))
+            else
             {
-                MessageBox.Show("El nombre de usuario esta en uso").ToString();
-                return false;
+                existingId = usersDao.FindByRazonSocialYCuit(companyNameTxt.Text.Trim(), companyIDTxt.Text.Trim());
+                if (existingId != -1 &&
+                    (this.User == null || existingId != this.User.IdUsuario)
+                    )
+                {
+                    MessageBox.Show("Ya existe una empresa con esa razon social y CUIT").ToString();
+                    return false;
+                }
             }
 
             return true; //all clear

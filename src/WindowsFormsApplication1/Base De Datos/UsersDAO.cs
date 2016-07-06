@@ -80,13 +80,6 @@ namespace WindowsFormsApplication1.Base_De_Datos
             return result.Rows.Count > 0;
         }
 
-        public bool UsernameIsAvailable(String username)
-        {
-            String query = "select IdUsuario from class.Usuario where Usuario = '" + username + "';";
-            DataTable result = Conexion.LeerTabla(query);
-            return result.Rows.Count == 0;
-        }
-
         private int createCommon(Usuario usuario)
         {
             String query = "insert into class.usuario (Usuario, Clave, EstaHabilitado, LoginFallidos, Mail, "
@@ -186,6 +179,29 @@ namespace WindowsFormsApplication1.Base_De_Datos
                 "Rubro ='" + empresa.Rubro + "'" +
                 " where IdUsuario = " + empresa.IdUsuario + ";";
             int result = Conexion.EjecutarComando(query);
+        }
+
+        public int FindByUserName(String username)
+        {
+            String query = "select IdUsuario from class.Usuario where Usuario = '" + username + "';";
+            DataTable result = Conexion.LeerTabla(query);
+            return result.Rows.Count > 0 ? (int)((DataRow)result.Rows[0])[0] : -1;
+        }
+
+        public int FindByDNI(String DNIType, String DNI)
+        {
+            String query = "select IdUsuario from class.Persona where TipoDocumento = '" + DNIType + "' AND " +
+                "DNI = '" + DNI + "'";
+            DataTable result = Conexion.LeerTabla(query);
+            return result.Rows.Count > 0 ? (int)((DataRow)result.Rows[0])[0] : -1;
+        }
+
+        public int FindByRazonSocialYCuit(String RazonSocial, String CUIT)
+        {
+            String query = "select IdUsuario from class.Empresa where RazonSocial = '" + RazonSocial + "' AND " +
+                "CUIT = '" + CUIT + "'";
+            DataTable result = Conexion.LeerTabla(query);
+            return result.Rows.Count > 0 ? (int)((DataRow)result.Rows[0])[0] : -1;
         }
     }
 }
