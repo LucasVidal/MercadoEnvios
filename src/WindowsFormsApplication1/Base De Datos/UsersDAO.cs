@@ -56,7 +56,7 @@ namespace WindowsFormsApplication1.Base_De_Datos
             }
             else
             {
-                String query = "select * from class.usuario, class.empresa where " +
+                String query = "select * from class.usuario, class.empresa, class.rolUsuario where " +
     "class.Usuario.IdUsuario = class.Empresa.IdUsuario and class.Usuario.IdUsuario = " + userID.ToString() +
     " and class.rolUsuario.IdUsuario = class.Usuario.IdUsuario";
                 DataTable result = Conexion.LeerTabla(query);
