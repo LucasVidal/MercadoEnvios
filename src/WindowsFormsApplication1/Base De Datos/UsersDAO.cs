@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using WindowsFormsApplication1.Model;
 
 namespace WindowsFormsApplication1.Base_De_Datos
@@ -202,6 +203,13 @@ namespace WindowsFormsApplication1.Base_De_Datos
                 "CUIT = '" + CUIT + "'";
             DataTable result = Conexion.LeerTabla(query);
             return result.Rows.Count > 0 ? (int)((DataRow)result.Rows[0])[0] : -1;
+        }
+
+        public void RemoveUser(int userId) 
+        {
+            String query = "update class.Usuario set " +
+                "Eliminado = 1 where IdUsuario = " + userId + ";";
+            int result = Conexion.EjecutarComando(query);
         }
     }
 }

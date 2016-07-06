@@ -196,7 +196,8 @@ CREATE TABLE Class.Usuario
 		IdUsuario		int IDENTITY(1,1) PRIMARY KEY,
 		Usuario			nvarchar(255) UNIQUE NOT NULL,
 		Clave			varbinary(4000) NOT NULL,
-		EstaHabilitado	bit NOT NULL,		
+		EstaHabilitado	bit NOT NULL,
+		Eliminado		bit default 0,
 		LoginFallidos	int NOT NULL DEFAULT 0,
 		Mail			nvarchar(255) NOT NULL,
 		Telefono		nvarchar(20),
@@ -207,7 +208,7 @@ CREATE TABLE Class.Usuario
 		Depto			nvarchar(100),
 		Localidad		nvarchar(100),
 		CodigoPostal	nvarchar(100) not null,
-		PublicacionesGratuitas int not null,
+		PublicacionesGratuitas int not null
 );
 
 

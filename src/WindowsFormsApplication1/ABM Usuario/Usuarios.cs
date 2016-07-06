@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MercadoEnvio.Base_De_Datos;
 using WindowsFormsApplication1.ABM_Usuario;
+using WindowsFormsApplication1.Base_De_Datos;
 
 namespace MercadoEnvio.ABM_Usuario
 {
@@ -22,7 +23,7 @@ namespace MercadoEnvio.ABM_Usuario
         private void searchPersona()
         {
             String query = "SELECT u.IdUsuario, u.Usuario, p.Nombre, p.Apellido, p.DNI, u.Mail " +
-                "FROM Class.Usuario u, Class.Persona p WHERE u.IdUsuario = p.IdUsuario";
+                "FROM Class.Usuario u, Class.Persona p WHERE u.IdUsuario = p.IdUsuario AND Eliminado = 0";
             query += textBox1.Text.Length > 0 ? " AND p.Nombre like '%" + textBox1.Text.Trim() + "%'" : "";
             query += textBox2.Text.Length > 0 ? " AND p.Apellido like '%" + textBox2.Text.Trim() + "%'" : "";
             query += textBox3.Text.Length > 0 ? " AND p.DNI like '%" + textBox3.Text.Trim() + "%'" : "";
@@ -37,7 +38,7 @@ namespace MercadoEnvio.ABM_Usuario
         private void searchEmpresa()
         {
             String query = "SELECT u.IdUsuario, u.Usuario, e.RazonSocial, e.CUIT, u.Mail " +
-                "FROM Class.Usuario u, Class.Empresa e WHERE u.IdUsuario = e.IdUsuario";
+                "FROM Class.Usuario u, Class.Empresa e WHERE u.IdUsuario = e.IdUsuario AND Eliminado = 0";
             query += textBox5.Text.Length > 0 ? " AND e.RazonSocial like '%" + textBox5.Text.Trim() + "%'" : "";
             query += textBox6.Text.Length > 0 ? " AND e.CUIT like '%" + textBox6.Text.Trim() + "%'" : "";
             query += textBox7.Text.Length > 0 ? " AND u.Mail like '%" + textBox7.Text.Trim() + "%'" : "";
@@ -100,6 +101,22 @@ namespace MercadoEnvio.ABM_Usuario
         {
             editUserBtn.Enabled = true;
             removeUserBtn.Enabled = true;
+        }
+
+        private void removeUserBtn_Click(object sender, EventArgs e)
+        {
+            int id = int.Parse(dataGridView1.SelectedRows[0].Cells["IdUsuario"].FormattedValue.ToString());
+            UsersDAO usersDao = new UsersDAO();
+            usersDao.RemoveUser(id);
+            MessageBox.Show("Usuario eliminado").ToString();
+            if (tabControl1.SelectedIndex == 0)
+            {
+                searchPersona();
+            }
+            else
+            {
+                searchEmpresa();
+            }
         }
 
     }

@@ -104,6 +104,7 @@
             this.removeUserBtn.TabIndex = 4;
             this.removeUserBtn.Text = "Borrar";
             this.removeUserBtn.UseVisualStyleBackColor = true;
+            this.removeUserBtn.Click += new System.EventHandler(this.removeUserBtn_Click);
             // 
             // tabControl1
             // 
