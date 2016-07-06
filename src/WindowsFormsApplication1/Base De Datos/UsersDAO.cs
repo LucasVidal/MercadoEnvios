@@ -16,9 +16,9 @@ namespace WindowsFormsApplication1.Base_De_Datos
 
         public void save(Usuario usuario)
         {
-            if (usuario.IdUsuario == null) {
+            if (usuario.IdUsuario == -1) {
                 int newId = createCommon(usuario);
-                usuario.IdUsuario = newId;
+                usuario.IdUsuario =  newId;
                 if (usuario.GetType() == typeof(Persona)) {
                     createPersona((Persona)usuario);
                 } else {
@@ -38,8 +38,9 @@ namespace WindowsFormsApplication1.Base_De_Datos
         {
             if (userIsPersona(userID))
             {
-                String query = "select * from class.usuario, class.persona where " +
-    "class.Usuario.IdUsuario = class.Persona.IdUsuario and class.Usuario.IdUsuario = " + userID.ToString();
+                String query = "select * from class.usuario, class.persona, class.rolUsuario where " +
+    "class.Usuario.IdUsuario = class.Persona.IdUsuario and class.Usuario.IdUsuario = " + userID.ToString() +
+    " and class.rolUsuario.IdUsuario = class.Usuario.IdUsuario";
                 DataTable result = Conexion.LeerTabla(query);
                 DataRow row = result.Rows[0];
                 if (result.Rows.Count == 0) return null;
@@ -56,7 +57,8 @@ namespace WindowsFormsApplication1.Base_De_Datos
             else
             {
                 String query = "select * from class.usuario, class.empresa where " +
-    "class.Usuario.IdUsuario = class.Empresa.IdUsuario and class.Usuario.IdUsuario = " + userID.ToString();
+    "class.Usuario.IdUsuario = class.Empresa.IdUsuario and class.Usuario.IdUsuario = " + userID.ToString() +
+    " and class.rolUsuario.IdUsuario = class.Usuario.IdUsuario";
                 DataTable result = Conexion.LeerTabla(query);
                 DataRow row = result.Rows[0];
                 if (result.Rows.Count == 0) return null;
@@ -81,24 +83,39 @@ namespace WindowsFormsApplication1.Base_De_Datos
 
         private int createCommon(Usuario usuario)
         {
-            String query = "insert into class.usuario (Usuario, Clave, EstaHabilitado, IdRol, LoginFallidos, Mail, "
-                + "Telefono, Ciudad, Calle, Numero, Piso, Depto, Localidad, CodigoPostal) " +
-                " values(" + usuario.IdUsuario + ", " + 
+            String query = "insert into class.usuario (Usuario, Clave, EstaHabilitado, LoginFallidos, Mail, "
+                + "Telefono, Ciudad, Calle, Numero, Piso, Depto, Localidad, CodigoPostal, PublicacionesGratuitas) values (" +
+                "'" + usuario.Username + "', " + 
                 "convert(varbinary,convert(nvarchar(4000),Class.psencriptar('" + usuario.Password + "'))), " +
-                "1, " + usuario.RolId + ", 0, " + usuario.Email + ", " + usuario.Telefono + ", NULL, "
-                + usuario.Calle + ", " + usuario.Numero + ", " + usuario.Piso + ", " + usuario.Depto + ", "
-                + usuario.Localidad + ", " + usuario.CodigoPostal + ")";
-            int newUserId = Conexion.EjecutarComando(query);
+                (usuario.EstaHabilitado ? "1" : "0") + ", " +
+                "0, " + 
+                "'" + usuario.Email + "', " + 
+                "'" + usuario.Telefono + "', " +
+                "NULL, " +
+                "'" + usuario.Calle + "', " + 
+                "'" + usuario.Numero + "', " + 
+                "'" + usuario.Piso + "', " + 
+                "'" + usuario.Depto + "', " +
+                "'" + usuario.Localidad + "', " + 
+                "'" + usuario.CodigoPostal + "', " +
+                "0)";
+            int newUserId = Conexion.ExecuteAndReturnId(query);
+
+            query = "insert into class.rolUsuario (Orden, IdUsuario, IdRol) values (" +
+                "1, " +
+                newUserId + ", " +
+                usuario.RolId + ");";
+
+            int result = Conexion.EjecutarComando(query);
             return newUserId;
         }
 
-        private int updateCommon(Usuario usuario)
+        private void updateCommon(Usuario usuario)
         {
             String query = "update class.Usuario set " +
                 "Usuario ='" + usuario.Username + "', " +
                 "Clave =convert(varbinary,convert(nvarchar(4000),Class.psencriptar('" + usuario.Password + "'))), " +
                 "EstaHabilitado =" + (usuario.EstaHabilitado ? "1" : "0") + ", " +
-                "IdRol =" + usuario.RolId.ToString() + ", " +
                 "Mail ='" + usuario.Email + "', " +
                 "Telefono ='" + usuario.Telefono + "', " +
                 "Ciudad = NULL, " +
@@ -109,15 +126,25 @@ namespace WindowsFormsApplication1.Base_De_Datos
                 "Localidad ='" + usuario.Localidad + "', " +
                 "CodigoPostal ='" + usuario.CodigoPostal + "' " +
                 "where IdUsuario = " + usuario.IdUsuario.ToString() + ";";
-            int newUserId = Conexion.EjecutarComando(query);
-            return newUserId;
+            int result = Conexion.EjecutarComando(query);
+
+            query = "update class.rolUsuario set " +
+               " IdRol = " + usuario.RolId.ToString() + " " +
+               "where IdUsuario = " + usuario.IdUsuario.ToString() + ";";
+            result = Conexion.EjecutarComando(query);
         }
 
         private void createPersona(Persona persona)
         {
-            String query = "insert into class.persona (IdUsuario, Nombre, Apellido, DNI, FechaNac, FechaCreacion) " +
-                " values(" + persona.IdUsuario + ", " + persona.Nombre + ", " + persona.Apellido + ", " 
-                + persona.DNI + ", " + persona.FechaDeNacimiento + ", " + persona.FechaDeCreacion + " )";
+            String query = "insert into class.persona (IdUsuario, Nombre, Apellido, TipoDocumento, DNI, FechaNac, FechaCreacion) " +
+                " values (" + 
+                "'" + persona.IdUsuario + "', " +
+                "'" + persona.Nombre + "', " +
+                "'" + persona.Apellido + "', " +
+                "'" + persona.TipoDeDocumento + "', " +
+                "'" + persona.DNI + "', " +
+                "'" + persona.FechaDeNacimiento + "', " +
+                "'" + persona.FechaDeCreacion + "' )";
             int result = Conexion.EjecutarComando(query);
         }
 
@@ -126,7 +153,7 @@ namespace WindowsFormsApplication1.Base_De_Datos
             String query = "update class.Persona set " +
                 "Nombre ='" + persona.Nombre + "', " +
                 "Apellido ='" + persona.Apellido + "', " +
-                "DNI =" + persona.DNI + ", " +
+                "DNI ='" + persona.DNI + "', " +
                 "FechaCreacion ='" + persona.FechaDeCreacion + "' " +
                 " where IdUsuario = " + persona.IdUsuario.ToString() + ";";
             int result = Conexion.EjecutarComando(query);
@@ -135,8 +162,12 @@ namespace WindowsFormsApplication1.Base_De_Datos
         private void createEmpresa(Empresa empresa) 
         {
             String query = "insert into class.empresa (IdUsuario, RazonSocial, Cuit, NombreContacto, Rubro) " +
-                " values(" + empresa.IdUsuario + ", " + empresa.RazonSocial + ", " + empresa.CUIT + ", " 
-                + empresa.NombreDeContacto + ", " + empresa.Rubro + ")";
+                " values(" +
+                empresa.IdUsuario + ", " +
+                "'" + empresa.RazonSocial + "', " +
+                "'" + empresa.CUIT + "', " +
+                "'" + empresa.NombreDeContacto + "', " +
+                "'" + empresa.Rubro + "')";
             int result = Conexion.EjecutarComando(query);
         }
 

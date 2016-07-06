@@ -96,6 +96,7 @@
             this.passwordTxt.Name = "passwordTxt";
             this.passwordTxt.Size = new System.Drawing.Size(121, 20);
             this.passwordTxt.TabIndex = 1;
+            this.passwordTxt.UseSystemPasswordChar = true;
             // 
             // rolCmb
             // 
@@ -226,7 +227,7 @@
             this.addressZipcodeTxt.Location = new System.Drawing.Point(166, 250);
             this.addressZipcodeTxt.Name = "addressZipcodeTxt";
             this.addressZipcodeTxt.Size = new System.Drawing.Size(121, 20);
-            this.addressZipcodeTxt.TabIndex = 21;
+            this.addressZipcodeTxt.TabIndex = 22;
             // 
             // label9
             // 
@@ -388,6 +389,7 @@
             this.companyRadioButton.TabStop = true;
             this.companyRadioButton.Text = "Empresa";
             this.companyRadioButton.UseVisualStyleBackColor = true;
+            this.companyRadioButton.CheckedChanged += new System.EventHandler(this.companyRadioButton_CheckedChanged);
             // 
             // personRadioButton
             // 
@@ -399,6 +401,7 @@
             this.personRadioButton.TabStop = true;
             this.personRadioButton.Text = "Persona";
             this.personRadioButton.UseVisualStyleBackColor = true;
+            this.personRadioButton.CheckedChanged += new System.EventHandler(this.personRadioButton_CheckedChanged);
             // 
             // companyGroupBox
             // 
@@ -504,7 +507,7 @@
             this.addressDepartmentTxt.Location = new System.Drawing.Point(166, 223);
             this.addressDepartmentTxt.Name = "addressDepartmentTxt";
             this.addressDepartmentTxt.Size = new System.Drawing.Size(121, 20);
-            this.addressDepartmentTxt.TabIndex = 43;
+            this.addressDepartmentTxt.TabIndex = 21;
             // 
             // label22
             // 

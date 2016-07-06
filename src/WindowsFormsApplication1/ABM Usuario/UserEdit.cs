@@ -20,6 +20,8 @@ namespace WindowsFormsApplication1.ABM_Usuario
         public UserEdit()
         {
             InitializeComponent();
+            loadRoles();
+            setUserTypeRadioButtonsEnabled(true);
         }
 
         public UserEdit(int user_id)
@@ -27,6 +29,8 @@ namespace WindowsFormsApplication1.ABM_Usuario
             InitializeComponent();
             UsersDAO usersDao = new UsersDAO();
             this.User = usersDao.get(user_id);
+            loadRoles();
+            setUserTypeRadioButtonsEnabled(false);
         }
 
         private void UserEdit_Load(object sender, EventArgs e)
@@ -43,10 +47,25 @@ namespace WindowsFormsApplication1.ABM_Usuario
             }
         }
 
+        private void setUserTypeRadioButtonsEnabled(bool enabled)
+        {
+            personRadioButton.Enabled = enabled;
+            companyRadioButton.Enabled = enabled;
+        }
+
+        private void loadRoles()
+        {
+            RoleDAO roleDao = new RoleDAO();
+            List<Rol> roles = roleDao.getAllRoles();
+            foreach (Rol rol in roles)
+            {
+                rolCmb.Items.Add(rol);
+            }
+        }
+
         private void showUsuario(Usuario user)
         {
             //common fields
-            RoleDAO roleDao = new RoleDAO();
             idLbl.Text = user.IdUsuario.ToString();
             usernameTxt.Text = user.Username;
             emailTxt.Text = user.Email;
@@ -57,13 +76,11 @@ namespace WindowsFormsApplication1.ABM_Usuario
             addressZipcodeTxt.Text = user.CodigoPostal;
             addressCityTxt.Text = user.Localidad;
             estaHabilitadoChk.Checked = user.EstaHabilitado;
-            List<Rol> roles = roleDao.getAllRoles();
-            foreach (Rol rol in roles)
+            foreach (Rol rol in rolCmb.Items)
             {
-                rolCmb.Items.Add(rol);
                 if (rol.IdRol == user.RolId)
                 {
-                    rolCmb.SelectedIndex = roles.IndexOf(rol);
+                    rolCmb.SelectedIndex = rolCmb.Items.IndexOf(rol);
                 }
             }
         }
@@ -101,24 +118,16 @@ namespace WindowsFormsApplication1.ABM_Usuario
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (!FormIsValid()) {
+                return;
+            }
             UsersDAO usersDAO = new UsersDAO();
             int oldId = this.User == null ? -1 : this.User.IdUsuario;
             Rol rol = (Rol)rolCmb.SelectedItem;
             if (personRadioButton.Checked)
             {
-
-                DateTime createdAt;
-                DateTime birthDate;
-                try
-                {
-                    createdAt = DateTime.Parse(createdAtTxt.Text);
-                    birthDate = DateTime.Parse(birthdateTxt.Text);
-                }
-                catch
-                {
-                    MessageBox.Show("Error en uno de los campos").ToString();
-                    return;
-                }
+                DateTime createdAt = DateTime.Parse(createdAtTxt.Text);
+                DateTime birthDate = DateTime.Parse(birthdateTxt.Text);
                 this.User = new Persona(oldId, usernameTxt.Text, passwordTxt.Text, rol.IdRol,
                     nameTxt.Text, surnameTxt.Text, IDNumberTxt.Text, IDTypeTxt.Text, emailTxt.Text, phoneTxt.Text,
                     addressStreetTxt.Text, addressNumberTxt.Text, addressFloorTxt.Text, addressDepartmentTxt.Text,
@@ -133,6 +142,42 @@ namespace WindowsFormsApplication1.ABM_Usuario
                     addressZipcodeTxt.Text, contactNameTxt.Text, mainActivityTxt.Text, estaHabilitadoChk.Checked);
             }
             usersDAO.save(this.User);
+        }
+
+        private bool FormIsValid()
+        {
+            if (!personRadioButton.Checked && !companyRadioButton.Checked)
+            {
+                MessageBox.Show("Seleccione el tipo de usuario").ToString();
+                return false;
+            }
+
+            if (personRadioButton.Checked)  
+            {
+                try
+                {
+                    DateTime createdAt = DateTime.Parse(createdAtTxt.Text);
+                    DateTime birthDate = DateTime.Parse(birthdateTxt.Text);
+                }
+                catch {
+                    MessageBox.Show("Error en uno de los campos de fecha").ToString();
+                   return false;
+                }
+            }    
+            return true; //all clear
+        }
+
+        private void personRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            personGroupBox.Enabled = true;
+            companyGroupBox.Enabled = false;
+
+        }
+
+        private void companyRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            personGroupBox.Enabled = false;
+            companyGroupBox.Enabled = true;
         }
     }
 }

@@ -59,6 +59,18 @@ namespace MercadoEnvio.Base_De_Datos
                 retorno=comando.ExecuteNonQuery();
             }
             return retorno;
+        }
+
+        public static int ExecuteAndReturnId(string query)
+        {
+            if (conectar())
+            {
+                query += "SELECT CAST(scope_identity() AS int)";
+                SqlCommand comando = new SqlCommand(query, conexion);
+                return (Int32) comando.ExecuteScalar();
+            }
+            return 0;
         }   
+
     }
 }
