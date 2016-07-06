@@ -119,7 +119,7 @@
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(123, 23);
             this.button7.TabIndex = 7;
-            this.button7.Text = "Generar publicacion";
+            this.button7.Text = "Publicaciones";
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button8_Click);
             // 
@@ -231,6 +231,7 @@
             this.Controls.Add(this.button1);
             this.Name = "AbmMenu";
             this.Text = "AbmMenu";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AbmMenu_FormClosed);
             this.Load += new System.EventHandler(this.AbmMenu_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

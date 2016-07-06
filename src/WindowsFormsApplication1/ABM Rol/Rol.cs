@@ -187,7 +187,7 @@ namespace MercadoEnvio.Abm_Rol
                     {
                         Conexion.EjecutarComando(cadena);
                     }
-                    catch (SqlException odbcEx)
+                    catch (SqlException)
                     {
                         MessageBox.Show("Error al Intentar insertar Rol");
                         mexito = false;
@@ -246,7 +246,7 @@ namespace MercadoEnvio.Abm_Rol
                 {
                     Conexion.EjecutarComando(cadena);
                 }
-                catch (SqlException odbcEx)
+                catch (SqlException)
                 {
                     MessageBox.Show("Error al Intentar Actualizar el Rol");
                     mexito = false;

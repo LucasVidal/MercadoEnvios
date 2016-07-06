@@ -8,7 +8,7 @@ namespace WindowsFormsApplication1.Utils
 {
     class ItemCliente
     {
-        //UTOPIA.TipoDeVisibilidad(nombre,apellido,activo,tipo,intentosFallidos)
+        /*
         public string nombre { get; set; }
         public string apellido { get; set; }
         public string tipoDoc { get; set; }
@@ -25,7 +25,7 @@ namespace WindowsFormsApplication1.Utils
         public string pass { get; set; }
         public int idUsuario { get; set; }
         public int idContacto { get; set; }
-
+        */
 
 
     }

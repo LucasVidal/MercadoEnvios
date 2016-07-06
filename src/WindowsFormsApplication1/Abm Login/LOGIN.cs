@@ -66,26 +66,35 @@ namespace MercadoCLass
                     {
                         if (int.Parse((fila["login_fallidos"].ToString())) < 3)
                         {
-                            this.Hide();
                             MessageBox.Show("Bienvenido " + fila["user_name"].ToString());
                             var value = System.Configuration.ConfigurationManager.AppSettings["FechaSistema"]; //ConfigurationSettings.AppSettings["FechaSistema"];
                             var appDate = DateTime.Parse(value);
                             cadena = "set dateformat dmy";
                             int resultado = Conexion.EjecutarComando(cadena);
-                            //Actualizo las publicaciones activas por si se volvio para atras la fecha
+                            /*//Actualizo las publicaciones activas por si se volvio para atras la fecha
                             cadena = "update Class.Publicacion set idestado=2 where fechavencimiento>='" + appDate.ToString().Trim() + "' and fechainicio<='"+ appDate.ToString().Trim() + "'";
-                            resultado = Conexion.EjecutarComando(cadena);
+                            resultado = Conexion.EjecutarComando(cadena);*/
                             //Actualizo las publicaciones vencidas
-                            cadena = "update Class.Publicacion set idestado=4 where fechavencimiento<'" + appDate.ToString().Trim() + "'";
-                            resultado = Conexion.EjecutarComando(cadena);
+                            cadena = "update Class.Publicacion set idestado=4 where idestado<>4 AND fechavencimiento<'" + appDate.ToString().Trim() + "'";
+                            try
+                            {
+                                resultado = Conexion.EjecutarComando(cadena);
+                            }
+                            catch
+                            {
+                                MessageBox.Show("Error al actualizar publicaciones finalizadas.");
+                            }
 
-                            
+                            this.timer1.Stop();
+                            progressBar1.Visible = false;
+                            label4.Visible = false;
+                            this.Hide();
                             AbmMenu menu = new AbmMenu();
 
                             //menu.CargarMenu(fila["IdUsuario"].ToString());
                             menu.CargarMenu(fila["IdUsuario"].ToString(), fila["user_name"].ToString(), appDate);
                             menu.Show();
-
+                            //Application.Exit();
                         }
                         else
                         {

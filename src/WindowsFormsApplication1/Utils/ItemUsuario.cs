@@ -8,8 +8,9 @@ namespace WindowsFormsApplication1.Utils
 {
     public class ItemUsuario
     {
-        //UTOPIA.TipoDeVisibilidad(nombre,pass,activo,tipo,intentosFallidos)
+        /*
         public string nombre { get; set; }
         public string pass { get; set; }
+         * */
     }
 }

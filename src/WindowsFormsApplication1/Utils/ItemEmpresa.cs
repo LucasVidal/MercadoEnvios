@@ -8,7 +8,7 @@ namespace WindowsFormsApplication1.Utils
 {
     class ItemEmpresa
     {
-        //UTOPIA.TipoDeVisibilidad(nombre,apellido,activo,tipo,intentosFallidos)
+        /*
         public string razonSocial { get; set; }
         public string mail { get; set; }
         public decimal telefono { get; set; }
@@ -25,6 +25,6 @@ namespace WindowsFormsApplication1.Utils
         public string pass { get;set; }
         public int idUsuario { get; set; }
         public int idContacto { get; set; }
-
+        */
     }
 }

@@ -8,8 +8,10 @@ namespace WindowsFormsApplication1.Utils
 {
     class Usuario
     {
+        /*
         public int id { set; get; }
         public string nombre { set; get; }
-        public int tipo { set; get; } //1 == cliente, 2 == empresa, 3 == admin, etc
+        public int tipo { set; get; } //1 ==admin, 2 == empresa, 3 == cliente, etc
+         * */
     }
 }
