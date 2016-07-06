@@ -20,6 +20,8 @@ namespace WindowsFormsApplication1.ABM_Usuario
         public UserEdit()
         {
             InitializeComponent();
+            loadRoles();
+            setUserTypeRadioButtonsEnabled(true);
         }
 
         public UserEdit(int user_id)
@@ -27,20 +29,46 @@ namespace WindowsFormsApplication1.ABM_Usuario
             InitializeComponent();
             UsersDAO usersDao = new UsersDAO();
             this.User = usersDao.get(user_id);
-        }
-
-        private void loadUser(int user_id)
-        {
-            String query = "SELECT * FROM Class.Usuario WHERE idusuario = " + user_id.ToString();
-            DataTable user = new DataTable();
-            user = Conexion.LeerTabla(query);
+            loadRoles();
+            setUserTypeRadioButtonsEnabled(false);
         }
 
         private void UserEdit_Load(object sender, EventArgs e)
         {
-            //common fields
+            if (this.User != null) {
+                if (this.User.GetType() == typeof(Persona))
+                {
+                    showPersona((Persona)this.User);
+                }
+                else
+                {
+                    showEmpresa((Empresa)this.User);
+                }
+            }
+        }
+
+        private void setUserTypeRadioButtonsEnabled(bool enabled)
+        {
+            personRadioButton.Enabled = enabled;
+            companyRadioButton.Enabled = enabled;
+        }
+
+        private void loadRoles()
+        {
             RoleDAO roleDao = new RoleDAO();
-            Usuario user = this.User;
+            List<Rol> roles = roleDao.getAllRoles();
+            foreach (Rol rol in roles)
+            {
+                if (rol.IdRol != 1) //Hide admin role
+                { 
+                    rolCmb.Items.Add(rol);
+                }
+            }
+        }
+
+        private void showUsuario(Usuario user)
+        {
+            //common fields
             idLbl.Text = user.IdUsuario.ToString();
             usernameTxt.Text = user.Username;
             emailTxt.Text = user.Email;
@@ -50,42 +78,155 @@ namespace WindowsFormsApplication1.ABM_Usuario
             addressFloorTxt.Text = user.Depto;
             addressZipcodeTxt.Text = user.CodigoPostal;
             addressCityTxt.Text = user.Localidad;
-
-            List<Rol> roles = roleDao.getAllRoles();
-            foreach (Rol rol in roles)
+            estaHabilitadoChk.Checked = user.EstaHabilitado;
+            foreach (Rol rol in rolCmb.Items)
             {
-                rolCmb.Items.Add(rol);
                 if (rol.IdRol == user.RolId)
                 {
-                    rolCmb.SelectedIndex = roles.IndexOf(rol);
+                    rolCmb.SelectedIndex = rolCmb.Items.IndexOf(rol);
                 }
             }
-            
-            if (this.User.GetType() == typeof(Persona))
-            {
-                personRadioButton.Select();
-                Persona persona = (Persona)this.User;
+        }
 
-                //Persona fields
-                nameTxt.Text = persona.Nombre;
-                surnameTxt.Text = persona.Apellido;
-                IDTypeTxt.Text = persona.TipoDeDocumento;
-                IDNumberTxt.Text = persona.DNI;
-                birthdateTxt.Text = persona.FechaDeNacimiento.ToString();
-                createdAtTxt.Text = persona.FechaDeCreacion.ToString();
+        private void showEmpresa(Empresa empresa)
+        {
+            showUsuario(empresa);
+            companyRadioButton.Select();
+
+            //Empresa fields
+            companyNameTxt.Text = empresa.RazonSocial;
+            companyIDTxt.Text = empresa.CUIT;
+            contactNameTxt.Text = empresa.NombreDeContacto;
+            mainActivityTxt.Text = empresa.Rubro;
+        }
+
+        private void showPersona(Persona persona)
+        {
+            showUsuario(persona);
+            personRadioButton.Select();
+
+            //Persona fields
+            nameTxt.Text = persona.Nombre;
+            surnameTxt.Text = persona.Apellido;
+            IDTypeTxt.Text = persona.TipoDeDocumento;
+            IDNumberTxt.Text = persona.DNI;
+            birthdateTxt.Text = persona.FechaDeNacimiento.ToString();
+            createdAtTxt.Text = persona.FechaDeCreacion.ToString();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (!FormIsValid()) {
+                return;
+            }
+            UsersDAO usersDAO = new UsersDAO();
+            int oldId = this.User == null ? -1 : this.User.IdUsuario;
+            Rol rol = (Rol)rolCmb.SelectedItem;
+            if (personRadioButton.Checked)
+            {
+                DateTime createdAt = DateTime.Parse(createdAtTxt.Text);
+                DateTime birthDate = DateTime.Parse(birthdateTxt.Text);
+                this.User = new Persona(oldId, usernameTxt.Text, passwordTxt.Text, rol.IdRol,
+                    nameTxt.Text, surnameTxt.Text, IDNumberTxt.Text, IDTypeTxt.Text, emailTxt.Text, phoneTxt.Text,
+                    addressStreetTxt.Text, addressNumberTxt.Text, addressFloorTxt.Text, addressDepartmentTxt.Text,
+                    addressCityTxt.Text, addressZipcodeTxt.Text, birthDate,
+                    createdAt, estaHabilitadoChk.Checked);
             }
             else
             {
-                companyRadioButton.Select();
-                Empresa empresa = (Empresa)this.User;
+                this.User = new Empresa(oldId, usernameTxt.Text, passwordTxt.Text, rol.IdRol,
+                    companyNameTxt.Text, companyIDTxt.Text, emailTxt.Text, phoneTxt.Text, addressStreetTxt.Text,
+                    addressNumberTxt.Text, addressFloorTxt.Text, addressDepartmentTxt.Text, addressCityTxt.Text,
+                    addressZipcodeTxt.Text, contactNameTxt.Text, mainActivityTxt.Text, estaHabilitadoChk.Checked);
+            }
+            usersDAO.save(this.User);
+            this.Close();
+        }
 
-                //Empresa fields
-                companyNameTxt.Text = empresa.RazonSocial;
-                companyIDTxt.Text = empresa.CUIT;
-                contactNameTxt.Text = empresa.NombreDeContacto;
-                mainActivityTxt.Text = empresa.Rubro;
+        private bool FormIsValid()
+        {
+            if (!personRadioButton.Checked && !companyRadioButton.Checked)
+            {
+                MessageBox.Show("Seleccione el tipo de usuario").ToString();
+                return false;
+            }
+            if (usernameTxt.Text.Length == 0)
+            {
+                MessageBox.Show("El nombre de usuario no puede ser blanco").ToString();
+                return false;
+            }
+            if (passwordTxt.Text.Length == 0)
+            {
+                MessageBox.Show("El password no puede ser blanco").ToString();
+                return false;
+            }
+            if (rolCmb.SelectedItem == null)
+            {
+                MessageBox.Show("Debe elegir un rol").ToString();
+                return false;
+            }
+            UsersDAO usersDao = new UsersDAO();
+            int existingId = usersDao.FindByUserName(usernameTxt.Text);
+            if (existingId != -1 && 
+                (this.User == null || existingId != this.User.IdUsuario)
+                )
+            {
+                MessageBox.Show("El nombre de usuario esta en uso").ToString();
+                return false;
             }
 
+            if (personRadioButton.Checked)
+            {
+                try
+                {
+                    DateTime createdAt = DateTime.Parse(createdAtTxt.Text);
+                    DateTime birthDate = DateTime.Parse(birthdateTxt.Text);
+                }
+                catch
+                {
+                    MessageBox.Show("Error en uno de los campos de fecha").ToString();
+                    return false;
+                }
+                existingId = usersDao.FindByDNI(IDTypeTxt.Text.Trim(), IDNumberTxt.Text.Trim());
+                if (existingId != -1 &&
+                    (this.User == null || existingId != this.User.IdUsuario)
+                    )
+                {
+                    MessageBox.Show("Ya existe un usuario con ese DNI").ToString();
+                    return false;
+                }
+            }
+            else
+            {
+                existingId = usersDao.FindByRazonSocialYCuit(companyNameTxt.Text.Trim(), companyIDTxt.Text.Trim());
+                if (existingId != -1 &&
+                    (this.User == null || existingId != this.User.IdUsuario)
+                    )
+                {
+                    MessageBox.Show("Ya existe una empresa con esa razon social y CUIT").ToString();
+                    return false;
+                }
+            }
+
+            return true; //all clear
+        }
+
+        private void personRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            personGroupBox.Enabled = true;
+            companyGroupBox.Enabled = false;
+
+        }
+
+        private void companyRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            personGroupBox.Enabled = false;
+            companyGroupBox.Enabled = true;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

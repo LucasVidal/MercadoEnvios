@@ -16,9 +16,9 @@ namespace WindowsFormsApplication1.Model
         public Empresa(int IdUsuario, string Username, string Password, int RolId, string RazonSocial, 
             string CUIT, string Email, string Telefono, string Calle, string Numero,
             string Piso, string Depto, string Localidad, string CodigoPostal, string NombreDeContacto,
-            string Rubro)
+            string Rubro, bool EstaHabilitado)
             : base(IdUsuario, Username, Password, RolId, Email, Telefono, Calle, Numero, Piso, Depto, Localidad,
-            CodigoPostal)
+            CodigoPostal, EstaHabilitado)
         {
             this.RazonSocial = RazonSocial;
             this.CUIT = CUIT;

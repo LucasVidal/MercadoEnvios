@@ -18,9 +18,9 @@ namespace WindowsFormsApplication1.Model
         public Persona(int IdUsuario, string Username, string Password, int RolId, string Nombre, string Apellido,
             string DNI, string TipoDeDocumento, string Email, string Telefono, string Calle, string Numero, 
             string Piso, string Depto, string Localidad, string CodigoPostal, DateTime FechaDeNacimiento, 
-            DateTime FechaDeCreacion)
+            DateTime FechaDeCreacion, bool EstaHabilitado)
             : base(IdUsuario, Username, Password, RolId, Email, Telefono, Calle, Numero, Piso, Depto, Localidad,
-            CodigoPostal)
+            CodigoPostal, EstaHabilitado)
         {
             this.Nombre = Nombre;
             this.Apellido = Apellido;

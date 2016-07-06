@@ -49,7 +49,9 @@ namespace MercadoCLass
                 string cod = textBox1.Text;
                 string pass = textBox2.Text;
                 //string cadena = "select usuario as user_name,clave as contraseña ,loginfallidos as login_fallidos,IdRol as id_rol from Class.Usuario where clave=HASHBYTES('SHA2_256','" + pass.Trim() + "') and Usuario=('" + cod.Trim() + "')";
-                string cadena = "select IdUsuario,usuario as user_name,clave as contraseña ,loginfallidos as login_fallidos from Class.Usuario where clave=convert(varbinary,convert(nvarchar(4000),Class.psencriptar('" + pass.Trim() + "'))) and Usuario=('" + cod.Trim() + "')";
+                string cadena = "select IdUsuario,usuario as user_name,clave as contraseña ,loginfallidos as login_fallidos, Eliminado from Class.Usuario " +
+                    "where clave=convert(varbinary,convert(nvarchar(4000),Class.psencriptar('" + pass.Trim() + "'))) " + 
+                    "AND Usuario=('" + cod.Trim() + "')";
                 users = Conexion.LeerTabla(cadena);
                 if (users.Rows.Count == 0)
                 {
@@ -64,6 +66,12 @@ namespace MercadoCLass
                 {
                     foreach (DataRow fila in users.Rows)
                     {
+                        if ((bool)fila["Eliminado"])
+                        {
+                            MessageBox.Show("El usuario fue eliminado.");
+                            return;
+                        }
+
                         if (int.Parse((fila["login_fallidos"].ToString())) < 3)
                         {
                             MessageBox.Show("Bienvenido " + fila["user_name"].ToString());
