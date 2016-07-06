@@ -10,7 +10,6 @@ namespace WindowsFormsApplication1.Model
     {
         public int IdUsuario { get; set; }
         public string Username { get; set; }
-        public string Password { get; set; }
         public int RolId { get; set; }
         public string Email { get; set; }
         public string Telefono { get; set; }
@@ -22,13 +21,12 @@ namespace WindowsFormsApplication1.Model
         public string CodigoPostal { get; set; }
         public bool EstaHabilitado { get; set; }
 
-        public Usuario(int IdUsuario, string Username, string Password, int RolId, string Email,
+        public Usuario(int IdUsuario, string Username, int RolId, string Email,
             string Telefono, string Calle, string Numero, string Piso, string Depto, string Localidad,
             string CodigoPostal, bool EstaHabilitado)
         {
             this.IdUsuario = IdUsuario;
             this.Username = Username;
-            this.Password = Password;
             this.RolId = RolId;
             this.Email = Email;
             this.Telefono = Telefono;

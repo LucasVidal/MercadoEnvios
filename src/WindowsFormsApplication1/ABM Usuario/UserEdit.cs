@@ -1,4 +1,5 @@
-﻿using MercadoEnvio.Base_De_Datos;
+﻿using MercadoEnvio.ABM_Usuario;
+using MercadoEnvio.Base_De_Datos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,6 +23,9 @@ namespace WindowsFormsApplication1.ABM_Usuario
             InitializeComponent();
             loadRoles();
             setUserTypeRadioButtonsEnabled(true);
+            passwordTxt.Visible = true;
+            label8.Visible = true;
+            button3.Visible = false;
         }
 
         public UserEdit(int user_id)
@@ -31,6 +35,9 @@ namespace WindowsFormsApplication1.ABM_Usuario
             this.User = usersDao.get(user_id);
             loadRoles();
             setUserTypeRadioButtonsEnabled(false);
+            passwordTxt.Visible = false;
+            label8.Visible = false;
+            button3.Visible = true;
         }
 
         private void UserEdit_Load(object sender, EventArgs e)
@@ -126,7 +133,7 @@ namespace WindowsFormsApplication1.ABM_Usuario
             {
                 DateTime createdAt = DateTime.Parse(createdAtTxt.Text);
                 DateTime birthDate = DateTime.Parse(birthdateTxt.Text);
-                this.User = new Persona(oldId, usernameTxt.Text, passwordTxt.Text, rol.IdRol,
+                this.User = new Persona(oldId, usernameTxt.Text, rol.IdRol,
                     nameTxt.Text, surnameTxt.Text, IDNumberTxt.Text, IDTypeTxt.Text, emailTxt.Text, phoneTxt.Text,
                     addressStreetTxt.Text, addressNumberTxt.Text, addressFloorTxt.Text, addressDepartmentTxt.Text,
                     addressCityTxt.Text, addressZipcodeTxt.Text, birthDate,
@@ -134,12 +141,12 @@ namespace WindowsFormsApplication1.ABM_Usuario
             }
             else
             {
-                this.User = new Empresa(oldId, usernameTxt.Text, passwordTxt.Text, rol.IdRol,
+                this.User = new Empresa(oldId, usernameTxt.Text, rol.IdRol,
                     companyNameTxt.Text, companyIDTxt.Text, emailTxt.Text, phoneTxt.Text, addressStreetTxt.Text,
                     addressNumberTxt.Text, addressFloorTxt.Text, addressDepartmentTxt.Text, addressCityTxt.Text,
                     addressZipcodeTxt.Text, contactNameTxt.Text, mainActivityTxt.Text, estaHabilitadoChk.Checked);
             }
-            usersDAO.save(this.User);
+            usersDAO.save(this.User, passwordTxt.Text);
             this.Close();
         }
 
@@ -155,7 +162,7 @@ namespace WindowsFormsApplication1.ABM_Usuario
                 MessageBox.Show("El nombre de usuario no puede ser blanco").ToString();
                 return false;
             }
-            if (passwordTxt.Text.Length == 0)
+            if (this.User == null && passwordTxt.Text.Length == 0)
             {
                 MessageBox.Show("El password no puede ser blanco").ToString();
                 return false;
@@ -227,6 +234,12 @@ namespace WindowsFormsApplication1.ABM_Usuario
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            ChangePassword changePassword = new ChangePassword(this.User.IdUsuario.ToString());
+            changePassword.Show();
         }
     }
 }
