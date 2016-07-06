@@ -59,7 +59,10 @@ namespace WindowsFormsApplication1.ABM_Usuario
             List<Rol> roles = roleDao.getAllRoles();
             foreach (Rol rol in roles)
             {
-                rolCmb.Items.Add(rol);
+                if (rol.IdRol != 1) //Hide admin role
+                { 
+                    rolCmb.Items.Add(rol);
+                }
             }
         }
 
@@ -111,11 +114,6 @@ namespace WindowsFormsApplication1.ABM_Usuario
             createdAtTxt.Text = persona.FechaDeCreacion.ToString();
         }
 
-        private void personGroupBox_Enter(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             if (!FormIsValid()) {
@@ -142,6 +140,7 @@ namespace WindowsFormsApplication1.ABM_Usuario
                     addressZipcodeTxt.Text, contactNameTxt.Text, mainActivityTxt.Text, estaHabilitadoChk.Checked);
             }
             usersDAO.save(this.User);
+            this.Close();
         }
 
         private bool FormIsValid()
@@ -151,7 +150,21 @@ namespace WindowsFormsApplication1.ABM_Usuario
                 MessageBox.Show("Seleccione el tipo de usuario").ToString();
                 return false;
             }
-
+            if (usernameTxt.Text.Length == 0)
+            {
+                MessageBox.Show("El nombre de usuario no puede ser blanco").ToString();
+                return false;
+            }
+            if (passwordTxt.Text.Length == 0)
+            {
+                MessageBox.Show("El password no puede ser blanco").ToString();
+                return false;
+            }
+            if (rolCmb.SelectedItem == null)
+            {
+                MessageBox.Show("Debe elegir un rol").ToString();
+                return false;
+            }
             if (personRadioButton.Checked)  
             {
                 try
@@ -163,7 +176,15 @@ namespace WindowsFormsApplication1.ABM_Usuario
                     MessageBox.Show("Error en uno de los campos de fecha").ToString();
                    return false;
                 }
-            }    
+            }
+
+            UsersDAO usersDao = new UsersDAO();
+            if (!usersDao.UsernameIsAvailable(usernameTxt.Text))
+            {
+                MessageBox.Show("El nombre de usuario esta en uso").ToString();
+                return false;
+            }
+
             return true; //all clear
         }
 
@@ -178,6 +199,11 @@ namespace WindowsFormsApplication1.ABM_Usuario
         {
             personGroupBox.Enabled = false;
             companyGroupBox.Enabled = true;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

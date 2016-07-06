@@ -65,7 +65,7 @@ namespace MercadoEnvio.Base_De_Datos
         {
             if (conectar())
             {
-                query += "SELECT CAST(scope_identity() AS int)";
+                query += "; SELECT CAST(scope_identity() AS int)";
                 SqlCommand comando = new SqlCommand(query, conexion);
                 return (Int32) comando.ExecuteScalar();
             }

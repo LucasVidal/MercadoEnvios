@@ -96,5 +96,11 @@ namespace MercadoEnvio.ABM_Usuario
             searchEmpresa();
         }
 
+        private void dataGridView1_RowStateChanged(object sender, DataGridViewRowStateChangedEventArgs e)
+        {
+            editUserBtn.Enabled = true;
+            removeUserBtn.Enabled = true;
+        }
+
     }
 }

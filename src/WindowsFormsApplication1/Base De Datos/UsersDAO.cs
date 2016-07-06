@@ -80,6 +80,12 @@ namespace WindowsFormsApplication1.Base_De_Datos
             return result.Rows.Count > 0;
         }
 
+        public bool UsernameIsAvailable(String username)
+        {
+            String query = "select IdUsuario from class.Usuario where Usuario = '" + username + "';";
+            DataTable result = Conexion.LeerTabla(query);
+            return result.Rows.Count == 0;
+        }
 
         private int createCommon(Usuario usuario)
         {
@@ -98,7 +104,7 @@ namespace WindowsFormsApplication1.Base_De_Datos
                 "'" + usuario.Depto + "', " +
                 "'" + usuario.Localidad + "', " + 
                 "'" + usuario.CodigoPostal + "', " +
-                "0)";
+                "0);";
             int newUserId = Conexion.ExecuteAndReturnId(query);
 
             query = "insert into class.rolUsuario (Orden, IdUsuario, IdRol) values (" +
@@ -144,7 +150,7 @@ namespace WindowsFormsApplication1.Base_De_Datos
                 "'" + persona.TipoDeDocumento + "', " +
                 "'" + persona.DNI + "', " +
                 "'" + persona.FechaDeNacimiento + "', " +
-                "'" + persona.FechaDeCreacion + "' )";
+                "'" + persona.FechaDeCreacion + "' );";
             int result = Conexion.EjecutarComando(query);
         }
 
@@ -167,7 +173,7 @@ namespace WindowsFormsApplication1.Base_De_Datos
                 "'" + empresa.RazonSocial + "', " +
                 "'" + empresa.CUIT + "', " +
                 "'" + empresa.NombreDeContacto + "', " +
-                "'" + empresa.Rubro + "')";
+                "'" + empresa.Rubro + "');";
             int result = Conexion.EjecutarComando(query);
         }
 

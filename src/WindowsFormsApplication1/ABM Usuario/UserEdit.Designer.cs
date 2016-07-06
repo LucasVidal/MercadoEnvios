@@ -487,8 +487,8 @@
             // 
             this.button1.Location = new System.Drawing.Point(659, 409);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 41;
+            this.button1.Size = new System.Drawing.Size(75, 32);
+            this.button1.TabIndex = 45;
             this.button1.Text = "Guardar";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -497,10 +497,11 @@
             // 
             this.button2.Location = new System.Drawing.Point(578, 409);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(75, 32);
             this.button2.TabIndex = 42;
             this.button2.Text = "Cancelar";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // addressDepartmentTxt
             // 
@@ -521,10 +522,12 @@
             // estaHabilitadoChk
             // 
             this.estaHabilitadoChk.AutoSize = true;
+            this.estaHabilitadoChk.Checked = true;
+            this.estaHabilitadoChk.CheckState = System.Windows.Forms.CheckState.Checked;
             this.estaHabilitadoChk.Location = new System.Drawing.Point(499, 413);
             this.estaHabilitadoChk.Name = "estaHabilitadoChk";
             this.estaHabilitadoChk.Size = new System.Drawing.Size(73, 17);
-            this.estaHabilitadoChk.TabIndex = 45;
+            this.estaHabilitadoChk.TabIndex = 41;
             this.estaHabilitadoChk.Text = "Habilitado";
             this.estaHabilitadoChk.UseVisualStyleBackColor = true;
             // 
