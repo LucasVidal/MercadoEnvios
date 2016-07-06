@@ -8,12 +8,14 @@ namespace WindowsFormsApplication1.Utils
 {
     class ItemBuscadorUsuario
     {
+        /*
         public string nombre { get; set; }
         public string apellido { get; set; }
         public string mail { get; set; }
         public decimal numeroDoc { get; set; }
         public string razonSocial { get; set; }
         public string cuit { get; set; } 
+         * */
 
     }
 }

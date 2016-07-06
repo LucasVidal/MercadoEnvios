@@ -38,7 +38,6 @@
             this.comboBox_visibilidades = new System.Windows.Forms.ComboBox();
             this.textBox_descr = new System.Windows.Forms.TextBox();
             this.textBox_precio_unidad = new System.Windows.Forms.TextBox();
-            this.comboBox_preguntas = new System.Windows.Forms.ComboBox();
             this.comboBox_rubro = new System.Windows.Forms.ComboBox();
             this.comboBox_tipo_publ = new System.Windows.Forms.ComboBox();
             this.comboBox_estado = new System.Windows.Forms.ComboBox();
@@ -47,7 +46,6 @@
             this.label_descr = new System.Windows.Forms.Label();
             this.label_estado_publ = new System.Windows.Forms.Label();
             this.label_tipo_visibilidad = new System.Windows.Forms.Label();
-            this.label_preguntas = new System.Windows.Forms.Label();
             this.label_precio_unidad = new System.Windows.Forms.Label();
             this.label_tipo_publ = new System.Windows.Forms.Label();
             this.label_stock = new System.Windows.Forms.Label();
@@ -57,7 +55,7 @@
             // 
             // Limpiar
             // 
-            this.Limpiar.Location = new System.Drawing.Point(193, 440);
+            this.Limpiar.Location = new System.Drawing.Point(193, 389);
             this.Limpiar.Name = "Limpiar";
             this.Limpiar.Size = new System.Drawing.Size(75, 23);
             this.Limpiar.TabIndex = 18;
@@ -67,17 +65,17 @@
             // 
             // Btn_Crear
             // 
-            this.Btn_Crear.Location = new System.Drawing.Point(355, 440);
+            this.Btn_Crear.Location = new System.Drawing.Point(355, 389);
             this.Btn_Crear.Name = "Btn_Crear";
             this.Btn_Crear.Size = new System.Drawing.Size(75, 23);
             this.Btn_Crear.TabIndex = 17;
-            this.Btn_Crear.Text = "Crear";
+            this.Btn_Crear.Text = "Aceptar";
             this.Btn_Crear.UseVisualStyleBackColor = true;
             this.Btn_Crear.Click += new System.EventHandler(this.Btn_Crear_Click);
             // 
             // Btn_Cancelar
             // 
-            this.Btn_Cancelar.Location = new System.Drawing.Point(21, 440);
+            this.Btn_Cancelar.Location = new System.Drawing.Point(21, 389);
             this.Btn_Cancelar.Name = "Btn_Cancelar";
             this.Btn_Cancelar.Size = new System.Drawing.Size(75, 23);
             this.Btn_Cancelar.TabIndex = 16;
@@ -102,7 +100,6 @@
             this.groupBox1.Controls.Add(this.comboBox_visibilidades);
             this.groupBox1.Controls.Add(this.textBox_descr);
             this.groupBox1.Controls.Add(this.textBox_precio_unidad);
-            this.groupBox1.Controls.Add(this.comboBox_preguntas);
             this.groupBox1.Controls.Add(this.comboBox_rubro);
             this.groupBox1.Controls.Add(this.comboBox_tipo_publ);
             this.groupBox1.Controls.Add(this.comboBox_estado);
@@ -111,30 +108,31 @@
             this.groupBox1.Controls.Add(this.label_descr);
             this.groupBox1.Controls.Add(this.label_estado_publ);
             this.groupBox1.Controls.Add(this.label_tipo_visibilidad);
-            this.groupBox1.Controls.Add(this.label_preguntas);
             this.groupBox1.Controls.Add(this.label_precio_unidad);
             this.groupBox1.Controls.Add(this.label_tipo_publ);
             this.groupBox1.Controls.Add(this.label_stock);
             this.groupBox1.Location = new System.Drawing.Point(20, 32);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(409, 379);
+            this.groupBox1.Size = new System.Drawing.Size(409, 347);
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Complete las siguientes opciones por favor";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // comboBox_envio
             // 
             this.comboBox_envio.FormattingEnabled = true;
-            this.comboBox_envio.Location = new System.Drawing.Point(189, 230);
+            this.comboBox_envio.Location = new System.Drawing.Point(189, 203);
             this.comboBox_envio.Name = "comboBox_envio";
             this.comboBox_envio.Size = new System.Drawing.Size(193, 21);
             this.comboBox_envio.TabIndex = 19;
+            this.comboBox_envio.SelectedIndexChanged += new System.EventHandler(this.comboBox_envio_SelectedIndexChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(21, 230);
+            this.label1.Location = new System.Drawing.Point(21, 203);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(137, 17);
             this.label1.TabIndex = 18;
@@ -147,16 +145,18 @@
             this.comboBox_visibilidades.Name = "comboBox_visibilidades";
             this.comboBox_visibilidades.Size = new System.Drawing.Size(192, 21);
             this.comboBox_visibilidades.TabIndex = 17;
+            this.comboBox_visibilidades.SelectedIndexChanged += new System.EventHandler(this.comboBox_visibilidades_SelectedIndexChanged);
             // 
             // textBox_descr
             // 
-            this.textBox_descr.Location = new System.Drawing.Point(114, 264);
+            this.textBox_descr.Location = new System.Drawing.Point(114, 237);
             this.textBox_descr.MaxLength = 254;
             this.textBox_descr.MinimumSize = new System.Drawing.Size(196, 100);
             this.textBox_descr.Multiline = true;
             this.textBox_descr.Name = "textBox_descr";
             this.textBox_descr.Size = new System.Drawing.Size(268, 100);
             this.textBox_descr.TabIndex = 13;
+            this.textBox_descr.TextChanged += new System.EventHandler(this.textBox_descr_TextChanged);
             // 
             // textBox_precio_unidad
             // 
@@ -165,14 +165,6 @@
             this.textBox_precio_unidad.Name = "textBox_precio_unidad";
             this.textBox_precio_unidad.Size = new System.Drawing.Size(192, 20);
             this.textBox_precio_unidad.TabIndex = 16;
-            // 
-            // comboBox_preguntas
-            // 
-            this.comboBox_preguntas.FormattingEnabled = true;
-            this.comboBox_preguntas.Location = new System.Drawing.Point(189, 200);
-            this.comboBox_preguntas.Name = "comboBox_preguntas";
-            this.comboBox_preguntas.Size = new System.Drawing.Size(193, 21);
-            this.comboBox_preguntas.TabIndex = 11;
             // 
             // comboBox_rubro
             // 
@@ -189,6 +181,7 @@
             this.comboBox_tipo_publ.Name = "comboBox_tipo_publ";
             this.comboBox_tipo_publ.Size = new System.Drawing.Size(193, 21);
             this.comboBox_tipo_publ.TabIndex = 15;
+            this.comboBox_tipo_publ.SelectedIndexChanged += new System.EventHandler(this.comboBox_tipo_publ_SelectedIndexChanged_1);
             // 
             // comboBox_estado
             // 
@@ -197,6 +190,7 @@
             this.comboBox_estado.Name = "comboBox_estado";
             this.comboBox_estado.Size = new System.Drawing.Size(193, 21);
             this.comboBox_estado.TabIndex = 12;
+            this.comboBox_estado.SelectedIndexChanged += new System.EventHandler(this.comboBox_estado_SelectedIndexChanged);
             // 
             // numericUpDown_stock
             // 
@@ -219,7 +213,7 @@
             // 
             this.label_descr.AutoSize = true;
             this.label_descr.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_descr.Location = new System.Drawing.Point(21, 263);
+            this.label_descr.Location = new System.Drawing.Point(21, 236);
             this.label_descr.Name = "label_descr";
             this.label_descr.Size = new System.Drawing.Size(87, 18);
             this.label_descr.TabIndex = 0;
@@ -244,16 +238,6 @@
             this.label_tipo_visibilidad.Size = new System.Drawing.Size(72, 18);
             this.label_tipo_visibilidad.TabIndex = 2;
             this.label_tipo_visibilidad.Text = "Visibilidad";
-            // 
-            // label_preguntas
-            // 
-            this.label_preguntas.AutoSize = true;
-            this.label_preguntas.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_preguntas.Location = new System.Drawing.Point(20, 203);
-            this.label_preguntas.Name = "label_preguntas";
-            this.label_preguntas.Size = new System.Drawing.Size(130, 18);
-            this.label_preguntas.TabIndex = 7;
-            this.label_preguntas.Text = "Permite Preguntas";
             // 
             // label_precio_unidad
             // 
@@ -285,17 +269,17 @@
             this.label_stock.TabIndex = 5;
             this.label_stock.Text = "Stock";
             // 
-            // Form1
+            // Publicacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(454, 471);
+            this.ClientSize = new System.Drawing.Size(454, 415);
             this.Controls.Add(this.Limpiar);
             this.Controls.Add(this.Btn_Crear);
             this.Controls.Add(this.Btn_Cancelar);
             this.Controls.Add(this.label_titulo_principal);
             this.Controls.Add(this.groupBox1);
-            this.Name = "Form1";
+            this.Name = "Publicacion";
             this.Text = "Publicacion";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
@@ -318,7 +302,6 @@
         private System.Windows.Forms.ComboBox comboBox_visibilidades;
         private System.Windows.Forms.TextBox textBox_descr;
         private System.Windows.Forms.TextBox textBox_precio_unidad;
-        private System.Windows.Forms.ComboBox comboBox_preguntas;
         private System.Windows.Forms.ComboBox comboBox_rubro;
         private System.Windows.Forms.ComboBox comboBox_tipo_publ;
         private System.Windows.Forms.ComboBox comboBox_estado;
@@ -327,7 +310,6 @@
         private System.Windows.Forms.Label label_descr;
         private System.Windows.Forms.Label label_estado_publ;
         private System.Windows.Forms.Label label_tipo_visibilidad;
-        private System.Windows.Forms.Label label_preguntas;
         private System.Windows.Forms.Label label_precio_unidad;
         private System.Windows.Forms.Label label_tipo_publ;
         private System.Windows.Forms.Label label_stock;

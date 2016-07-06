@@ -51,7 +51,6 @@ namespace WindowsFormsApplication1.Utils
                 else
                     fin = totalPublicaciones;
 
-                //calcularPaginas();
                 dataGridView.DataSource = paginarDataGridView(ini, fin);
                 mostrarNrosPaginas(ini);
             }
@@ -144,7 +143,6 @@ namespace WindowsFormsApplication1.Utils
             {
                 if (paginaActual == 1)
                 {
-                    MessageBox.Show("Ya estas en la 1º pagina");
                     return false;
                 }
                 else
@@ -160,7 +158,6 @@ namespace WindowsFormsApplication1.Utils
             {
                 if (paginaActual == totalPaginas)
                 {
-                    MessageBox.Show("Ya estas en la ultima pagina");
                     return false;
                 }
                 else
@@ -172,7 +169,7 @@ namespace WindowsFormsApplication1.Utils
         {
             if (totalPaginas == 0)
             {
-                MessageBox.Show("Aun no buscaste nada");
+                MessageBox.Show("No hay mas páginas.");
                 return false;
             }
             else

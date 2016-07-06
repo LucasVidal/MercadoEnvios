@@ -13,6 +13,11 @@ using MercadoEnvio.Abm_Rol;
 using MercadoEnvio.Visibilidad;
 using MercadoEnvio.Listado_Estadistico;
 using MercadoEnvio.Generar_Publicación;
+using MercadoEnvio.Generar_Publicacion;
+using MercadoEnvio.ComprarOfertar;
+using MercadoEnvio.Facturas;
+using MercadoEnvio.Historial_Cliente;
+using MercadoEnvio.Calificar;
 
 
 namespace MercadoEnvio.Abm_Menu
@@ -115,6 +120,8 @@ namespace MercadoEnvio.Abm_Menu
 
         private void button7_Click(object sender, EventArgs e)
         {
+            buscar_facturas ver_facturas = new buscar_facturas();
+            ver_facturas.Show();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -125,6 +132,9 @@ namespace MercadoEnvio.Abm_Menu
 
         private void button9_Click(object sender, EventArgs e)
         {
+            Historial ver_historial = new Historial();
+            ver_historial.setear_usuario(textBox1.Text.Trim());
+            ver_historial.Show();
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -135,6 +145,10 @@ namespace MercadoEnvio.Abm_Menu
 
         private void button6_Click(object sender, EventArgs e)
         {
+            Buscar_Publicaciones comprar = new Buscar_Publicaciones();
+            comprar.BuscarPublicacion();
+            comprar.setear_usuario(textBox1.Text.Trim());
+            comprar.Show();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -155,6 +169,9 @@ namespace MercadoEnvio.Abm_Menu
 
         private void button5_Click(object sender, EventArgs e)
         {
+            Calificaciones califcar = new Calificaciones();
+            califcar.setear_usuario(textBox1.Text.Trim());
+            califcar.Show();
         }
 
 
@@ -165,7 +182,8 @@ namespace MercadoEnvio.Abm_Menu
 
         private void button8_Click(object sender, EventArgs e)
         {
-            Publicacion publica = new Publicacion();
+            ABM_publicaciones publica = new ABM_publicaciones();
+            publica.setear_usuario(textBox1.Text.Trim());
             publica.Show();
         }
 
@@ -182,6 +200,11 @@ namespace MercadoEnvio.Abm_Menu
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void AbmMenu_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
 
     }

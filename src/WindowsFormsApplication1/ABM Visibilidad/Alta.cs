@@ -23,12 +23,12 @@ namespace MercadoEnvio.ALTA_Visibilidad
         {
             if (checkBox1.Checked)
             {
-                textBox3.Enabled = true;
+                envio.Enabled = true;
             }
             else
             {
-                textBox3.Text = " ";
-                textBox3.Enabled = false;
+                envio.Value = 0;
+                envio.Enabled = false;
             }
         }
 
@@ -36,11 +36,11 @@ namespace MercadoEnvio.ALTA_Visibilidad
         {
             if (checkBox1.Checked)
             {
-                textBox3.Enabled = true;
+                envio.Enabled = true;
             }
             else
             {
-                textBox3.Enabled = false;
+                envio.Enabled = false;
             }
 
         }
@@ -52,12 +52,12 @@ namespace MercadoEnvio.ALTA_Visibilidad
 
         private void button1_Click(object sender, EventArgs e)
         {
-            textBox1.Text = " ";
             textBox2.Text = " ";
-            textBox3.Text = " ";
             textBox4.Text = "";
-            textBox7.Text = "";
-            textBox8.Text = "";
+            porcentaje.Value = 0;
+            ordenamiento.Value = 0;
+            costo.Value = 0;
+            envio.Value = 0;
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
@@ -66,16 +66,6 @@ namespace MercadoEnvio.ALTA_Visibilidad
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox8_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }
@@ -98,36 +88,37 @@ namespace MercadoEnvio.ALTA_Visibilidad
 
         private void button3_Click(object sender, EventArgs e)
         {
+            if (this.validaCampoClave(textBox4))
+            {
+                MessageBox.Show("Todos los Campos son Obligatorios");
+                return;
+            }
+            if (ordenamiento.Value == 0)
+            {
+                MessageBox.Show("Es Obligatorios seleccionar Ordenamiento");
+                return;
+            }
+            else
+            {
+                string cmd = "select 1 from class.visibilidad where grado=" + ordenamiento.Value.ToString().Trim().Replace(',', '.');
+                DataTable nro_ordenamiento = new DataTable();
+                nro_ordenamiento = Conexion.LeerTabla(cmd);
+                if (nro_ordenamiento.Rows.Count != 0)
+                {
+                    MessageBox.Show("El ordenamiento seleccionado ya existe.");
+                    return;
+                }
+            }
+            if (checkBox1.Checked)
+            {
+                if (envio.Value == 0)
+                {
+                    MessageBox.Show("Es Obligatorios cargar el costo de envío si posee.");
+                    return;
+                }
+            }
             if (textBox2.Text.Trim().Length == 0) //Es un alta
             {
-                if (this.validaCampoClave(textBox1))
-                {
-                    MessageBox.Show("Todos los Campos son Obligatorios");
-                    return;
-                }
-                if (this.validaCampoClave(textBox4))
-                {
-                    MessageBox.Show("Todos los Campos son Obligatorios");
-                    return;
-                }
-                if (this.validaCampoClave(textBox7))
-                {
-                    MessageBox.Show("Todos los Campos son Obligatorios");
-                    return;
-                }
-                if (this.validaCampoClave(textBox8))
-                {
-                    MessageBox.Show("Es Obligatorios seleccionar modelo");
-                    return;
-                }
-                if (checkBox1.Checked)
-                {
-                    if (this.validaCampoClave(textBox3))
-                    {
-                        MessageBox.Show("Es Obligatorios cargar el costo de envío si posee.");
-                        return;
-                    }
-                }
                 DataTable visibilidadesexistentes = new DataTable();
                 string cadena = "select 1 from Class.Visibilidad where descripcion='" + textBox4.Text.Trim() + "'";
                 visibilidadesexistentes = Conexion.LeerTabla(cadena);
@@ -142,12 +133,13 @@ namespace MercadoEnvio.ALTA_Visibilidad
                     if (checkBox1.Checked)
                     {
                         cadena = cadena + "insert into Class.Visibilidad(descripcion,grado,porcentaje,costo,tieneenvio,Costoenvio) ";
-                        cadena = cadena + "values ('" + textBox4.Text.Trim() + "','" + textBox8.Text.Trim() + "'," + textBox1.Text.Trim().Replace(',', '.') + "," + textBox7.Text.Trim().Replace(',', '.') + ",'1'," + textBox3.Text.Trim().Replace(',', '.') + ");";
+                        //cadena = cadena + "values ('" + textBox4.Text.Trim() + "'," + ordenamiento.Value.ToString().Trim() + "," + textBox1.Text.Trim().Replace(',', '.') + "," + textBox7.Text.Trim().Replace(',', '.') + ",'1'," + textBox3.Text.Trim().Replace(',', '.') + ");";
+                        cadena = cadena + "values ('" + textBox4.Text.Trim() + "'," + ordenamiento.Value.ToString().Trim().Replace(',', '.') + "," + (porcentaje.Value / 100).ToString().Trim().Replace(',', '.') + "," + costo.Value.ToString().Trim().Replace(',', '.') + ",'1'," + envio.Value.ToString().Trim().Replace(',', '.') + ");";
                     }
                     else
                     {
-                        cadena = cadena + "insert into Class.Visibilidad(descripcion,grado,porcentaje,costo,tieneenvio) ";
-                        cadena = cadena + "values ('" + textBox4.Text.Trim() + "','" + textBox8.Text.Trim() + "'," + textBox1.Text.Trim().Replace(',', '.') + "," + textBox7.Text.Trim().Replace(',', '.') + ",'0');";
+                        cadena = cadena + "insert into Class.Visibilidad(descripcion,grado,porcentaje,costo,tieneenvio,Costoenvio) ";
+                        cadena = cadena + "values ('" + textBox4.Text.Trim().Replace(',', '.') + "'," + ordenamiento.Value.ToString().Trim().Replace(',', '.') + "," + (porcentaje.Value / 100).ToString().Trim().Replace(',', '.') + "," + costo.Value.ToString().Trim().Replace(',', '.') + ",'0','0');";
                     }
                     cadena = cadena + " commit tran";
                     bool mexito = true;
@@ -155,7 +147,7 @@ namespace MercadoEnvio.ALTA_Visibilidad
                     {
                         Conexion.EjecutarComando(cadena);
                     }
-                    catch (SqlException odbcEx)
+                    catch (SqlException)
                     {
                         MessageBox.Show("Error al Intentar Ingresar Visibilidad");
                         mexito = false;
@@ -174,12 +166,12 @@ namespace MercadoEnvio.ALTA_Visibilidad
                 string cadena = "";
                 if (checkBox1.Checked)
                 {
-                    cadena = cadena + "update Class.visibilidad set descripcion='" + textBox4.Text.Trim() + "',Grado='" + textBox8.Text.Trim() + "',porcentaje= " + textBox1.Text.Trim().Replace(',', '.') + ",costo=" + textBox7.Text.Trim().Replace(',', '.') + ",Tieneenvio='1',costoenvio=" + textBox3.Text.Trim().Replace(',', '.');
+                    cadena = cadena + "update Class.visibilidad set descripcion='" + textBox4.Text.Trim() + "',Grado=" + ordenamiento.Value.ToString().Trim().Replace(',', '.') + ",porcentaje= " + (porcentaje.Value / 100).ToString().Trim().Replace(',', '.') + ",costo=" + costo.Value.ToString().Trim().Replace(',', '.') + ",Tieneenvio='1',costoenvio=" + envio.Value.ToString().Trim().Replace(',', '.');
                     cadena = cadena + " where idvisibilidad='" + textBox2.Text.Trim() + "'";
                 }
                 else
                 {
-                    cadena = cadena + "update Class.visibilidad set descripcion='" + textBox4.Text.Trim() + "',Grado='" + textBox8.Text.Trim() + "',porcentaje= " + textBox1.Text.Trim().Replace(',', '.') + ",costo=" + textBox7.Text.Trim().Replace(',', '.') + ",Tieneenvio='0',costoenvio=0";
+                    cadena = cadena + "update Class.visibilidad set descripcion='" + textBox4.Text.Trim() + "',Grado=" + ordenamiento.Value.ToString().Trim().Replace(',', '.') + ",porcentaje= " + (porcentaje.Value / 100).ToString().Trim().Replace(',', '.') + ",costo=" + costo.Value.ToString().Trim().Replace(',', '.') + ",Tieneenvio='0',costoenvio=0";
                     cadena = cadena + " where idvisibilidad='" + textBox2.Text.Trim() + "'";
                 }
                 bool mexito = true;
@@ -187,7 +179,7 @@ namespace MercadoEnvio.ALTA_Visibilidad
                 {
                     Conexion.EjecutarComando(cadena);
                 }
-                catch (SqlException odbcEx)
+                catch (SqlException)
                 {
                     MessageBox.Show("Error al Intentar Actualizar la visibilidad");
                     mexito = false;
@@ -204,19 +196,20 @@ namespace MercadoEnvio.ALTA_Visibilidad
         {
             textBox2.Text = IdVisibilidad;
             textBox4.Text = Descripcion;
-            textBox8.Text = Grado;
-            textBox1.Text = Porcentaje;
+            ordenamiento.Value = Convert.ToDecimal(Grado);
+            porcentaje.Value = Convert.ToDecimal(Porcentaje);
             textBox2.ReadOnly = true;
-            textBox7.Text = Costo;
+            costo.Value = Convert.ToDecimal(Costo);
+
             if (Convert.ToBoolean(Tieneenvio))
             {
                 checkBox1.Checked = true;
-                textBox3.Text = Costoenvio;
+                envio.Value = Convert.ToDecimal(Costoenvio);
             }
             else
             {
                 checkBox1.Checked = false;
-                textBox3.Text = "";
+                envio.Value = 0;
             }
             button3.Visible = true;
             button2.Visible = false;
@@ -227,27 +220,27 @@ namespace MercadoEnvio.ALTA_Visibilidad
         {
             textBox2.Text = IdVisibilidad;
             textBox4.Text = Descripcion;
-            textBox8.Text = Grado;
-            textBox1.Text = Porcentaje;
+            ordenamiento.Value = Convert.ToDecimal(Grado);
+            porcentaje.Value = Convert.ToDecimal(Porcentaje);
             textBox2.ReadOnly = true;
-            textBox7.Text = Costo;
+            costo.Value = Convert.ToDecimal(Costo);
             if (Convert.ToBoolean(Tieneenvio))
             {
                 checkBox1.Checked = true;
-                textBox3.Text = Costoenvio;
+                costo.Value = Convert.ToDecimal(Costoenvio);
             }
             else
             {
                 checkBox1.Checked = false;
-                textBox3.Text = "";
+                costo.Value = 0;
             }
             textBox2.ReadOnly = true;
             textBox4.ReadOnly = true;
-            textBox8.ReadOnly = true;
-            textBox1.ReadOnly = true;
+            ordenamiento.Enabled = false;
+            porcentaje.Enabled = false;
             textBox2.ReadOnly = true;
-            textBox7.ReadOnly = true;
-            textBox3.ReadOnly = true;
+            costo.Enabled = false;
+            costo.Enabled = false;
             checkBox1.Enabled = false;
             button2.Visible = true;
             button3.Visible = false;
@@ -262,7 +255,7 @@ namespace MercadoEnvio.ALTA_Visibilidad
             {
                 Conexion.EjecutarComando(cadena);
             }
-            catch (SqlException odbcEx)
+            catch (SqlException)
             {
                 MessageBox.Show("Error al Intentar Eliminar la visibilidad");
                 mexito = false;

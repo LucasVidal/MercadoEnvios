@@ -29,39 +29,35 @@
         private void InitializeComponent()
         {
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.porcentaje = new System.Windows.Forms.NumericUpDown();
+            this.envio = new System.Windows.Forms.NumericUpDown();
+            this.ordenamiento = new System.Windows.Forms.NumericUpDown();
+            this.costo = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.porcentaje)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.envio)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ordenamiento)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.costo)).BeginInit();
             this.SuspendLayout();
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(110, 163);
+            this.label3.Location = new System.Drawing.Point(110, 151);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(82, 13);
             this.label3.TabIndex = 112;
             this.label3.Text = "Costo de Envio:";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(200, 160);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(55, 20);
-            this.textBox3.TabIndex = 111;
-            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // label1
             // 
@@ -72,30 +68,14 @@
             this.label1.TabIndex = 110;
             this.label1.Text = "Grado de ordenamiento:";
             // 
-            // textBox8
-            // 
-            this.textBox8.Location = new System.Drawing.Point(136, 71);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(119, 20);
-            this.textBox8.TabIndex = 109;
-            this.textBox8.TextChanged += new System.EventHandler(this.textBox8_TextChanged);
-            // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(12, 133);
+            this.label13.Location = new System.Drawing.Point(12, 123);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(37, 13);
             this.label13.TabIndex = 108;
             this.label13.Text = "Costo:";
-            // 
-            // textBox7
-            // 
-            this.textBox7.Location = new System.Drawing.Point(136, 130);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(119, 20);
-            this.textBox7.TabIndex = 107;
-            this.textBox7.TextChanged += new System.EventHandler(this.textBox7_TextChanged);
             // 
             // label12
             // 
@@ -117,24 +97,16 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(12, 102);
+            this.label8.Location = new System.Drawing.Point(12, 97);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(61, 13);
             this.label8.TabIndex = 104;
             this.label8.Text = "Porcentaje:";
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(136, 99);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(119, 20);
-            this.textBox1.TabIndex = 103;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(14, 163);
+            this.checkBox1.Location = new System.Drawing.Point(12, 150);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(83, 17);
             this.checkBox1.TabIndex = 102;
@@ -162,7 +134,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(136, 204);
+            this.button3.Location = new System.Drawing.Point(183, 188);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 99;
@@ -172,7 +144,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(136, 204);
+            this.button2.Location = new System.Drawing.Point(183, 188);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 98;
@@ -183,7 +155,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 204);
+            this.button1.Location = new System.Drawing.Point(15, 188);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 97;
@@ -191,21 +163,69 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // porcentaje
+            // 
+            this.porcentaje.Location = new System.Drawing.Point(139, 95);
+            this.porcentaje.Maximum = new decimal(new int[] {
+            1215752192,
+            23,
+            0,
+            0});
+            this.porcentaje.Name = "porcentaje";
+            this.porcentaje.Size = new System.Drawing.Size(119, 20);
+            this.porcentaje.TabIndex = 140;
+            // 
+            // envio
+            // 
+            this.envio.Location = new System.Drawing.Point(198, 147);
+            this.envio.Maximum = new decimal(new int[] {
+            1215752192,
+            23,
+            0,
+            0});
+            this.envio.Name = "envio";
+            this.envio.Size = new System.Drawing.Size(60, 20);
+            this.envio.TabIndex = 141;
+            // 
+            // ordenamiento
+            // 
+            this.ordenamiento.Location = new System.Drawing.Point(139, 69);
+            this.ordenamiento.Maximum = new decimal(new int[] {
+            1215752192,
+            23,
+            0,
+            0});
+            this.ordenamiento.Name = "ordenamiento";
+            this.ordenamiento.Size = new System.Drawing.Size(119, 20);
+            this.ordenamiento.TabIndex = 142;
+            // 
+            // costo
+            // 
+            this.costo.Location = new System.Drawing.Point(139, 121);
+            this.costo.Maximum = new decimal(new int[] {
+            1215752192,
+            23,
+            0,
+            0});
+            this.costo.Name = "costo";
+            this.costo.Size = new System.Drawing.Size(119, 20);
+            this.costo.TabIndex = 143;
+            // 
             // Alta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(272, 241);
+            this.ClientSize = new System.Drawing.Size(278, 241);
+            this.Controls.Add(this.costo);
+            this.Controls.Add(this.ordenamiento);
+            this.Controls.Add(this.envio);
+            this.Controls.Add(this.porcentaje);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox3);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox8);
             this.Controls.Add(this.label13);
-            this.Controls.Add(this.textBox7);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label2);
@@ -215,6 +235,10 @@
             this.Name = "Alta";
             this.Text = "Alta";
             this.Load += new System.EventHandler(this.Alta_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.porcentaje)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.envio)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ordenamiento)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.costo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -223,20 +247,20 @@
         #endregion
 
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.NumericUpDown porcentaje;
+        private System.Windows.Forms.NumericUpDown envio;
+        private System.Windows.Forms.NumericUpDown ordenamiento;
+        private System.Windows.Forms.NumericUpDown costo;
     }
 }

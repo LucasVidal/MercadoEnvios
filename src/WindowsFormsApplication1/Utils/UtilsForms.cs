@@ -50,7 +50,6 @@ namespace WindowsFormsApplication1.Utils
 
                 result = MessageBox.Show(mensaje, caption, buttons);
                 return result;
-                //if (result == System.Windows.Forms.DialogResult.Yes){ handle response }
         }
     }
 }

@@ -23,14 +23,14 @@ namespace MercadoEnvio.Base_De_Datos
             bool conectado = false;        
             //llenar la variable conexión con los parámetros de la variable parametros
             conexion = new SqlConnection(parametros);
-            //conexion = new SqlConnection(ConfigurationManager.ConnectionStrings["miCadenaConexion"].ConnectionString);
+
             try
             {
                 //abrir la conexion
                 conexion.Open();
                 conectado = true;
             }
-            catch (Exception error)
+            catch 
             {
                 conectado = false;
             }
