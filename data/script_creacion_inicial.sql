@@ -204,12 +204,11 @@ CREATE TABLE Class.Usuario
 		Telefono		nvarchar(20),
 		Ciudad			nvarchar(100),
 		Calle			nvarchar(200) not null,
-		Numero			numeric(9) not null,
-		Piso			numeric(9),
+		Numero			nvarchar(9) not null,
+		Piso			nvarchar(9),
 		Depto			nvarchar(100),
 		Localidad		nvarchar(100),
 		CodigoPostal	nvarchar(100) not null,
-		FechaCreacion	date NOT NULL,
 		PublicacionesGratuitas int not null,
 		CONSTRAINT FK_Usuario_Rol FOREIGN KEY (IdRol) REFERENCES Class.Rol (IdRol)
 );
@@ -222,6 +221,7 @@ CREATE TABLE Class.Persona
 		Apellido		nvarchar(255) NOT NULL,
 		Dni				numeric(18,0) NOT NULL,
 		FechaNac		date NOT NULL,
+		FechaCreacion	date NOT NULL,
 		CONSTRAINT FK_Persona_Usuario FOREIGN KEY (IdUsuario) REFERENCES Class.Usuario (IdUsuario)
 );
 
@@ -414,31 +414,31 @@ insert into class.RolFuncionalidad values (3,7,1)
 insert into class.RolFuncionalidad values (3,8,1)
 insert into class.RolFuncionalidad values (3,9,0)
 
-insert into class.Usuario (usuario,clave,EstaHabilitado,idrol,LoginFallidos,TipoDocumento,mail,calle,numero,CodigoPostal,FechaCreacion,PublicacionesGratuitas) values
-('admin',convert(varbinary,Class.psencriptar('w23e')),'1','1','0','','','',0,'',getdate(),0)
+insert into class.Usuario (usuario,clave,EstaHabilitado,idrol,LoginFallidos,TipoDocumento,mail,calle,Numero,CodigoPostal,PublicacionesGratuitas) values
+('admin',convert(varbinary,Class.psencriptar('w23e')),'1','1','0','','','',0,'',0)
 
-insert into class.Usuario (usuario,clave,EstaHabilitado,idrol,LoginFallidos,TipoDocumento,mail,calle,numero,piso,Depto,CodigoPostal,FechaCreacion,PublicacionesGratuitas)
+insert into class.Usuario (usuario,clave,EstaHabilitado,idrol,LoginFallidos,TipoDocumento,mail,calle,numero,piso,Depto,CodigoPostal,PublicacionesGratuitas)
 (select Publ_Cli_Dni usuario,convert(varbinary,Class.psencriptar(CONVERT(nvarchar(4000), Publ_Cli_Dni))),1,2,0,'DNI',Publ_Cli_Mail mail,Publ_Cli_Dom_Calle calle,Publ_Cli_Nro_Calle nro,Publ_Cli_Piso piso,Publ_Cli_Depto depto,
-Publ_Cli_Cod_Postal postal,getdate(),0 from gd_esquema.Maestra where not(Publ_Cli_Dni is null)  
+Publ_Cli_Cod_Postal postal,0 from gd_esquema.Maestra where not(Publ_Cli_Dni is null)  
 group by Publ_Cli_Dni,Publ_Cli_Mail,Publ_Cli_Dom_Calle,Publ_Cli_Nro_Calle,Publ_Cli_Piso,Publ_Cli_Depto,Publ_Cli_Cod_Postal union
 select Cli_Dni usuario,convert(varbinary,Class.psencriptar(CONVERT(nvarchar(4000), Cli_Dni))),1,2,0,'DNI',Cli_Mail mail ,Cli_Dom_Calle calle ,Cli_Nro_Calle nro,Cli_Piso,Cli_Depto depto,
-Cli_Cod_Postal postal,getdate(),0 from gd_esquema.Maestra where not(Cli_Dni is null)  
+Cli_Cod_Postal postal,0 from gd_esquema.Maestra where not(Cli_Dni is null)  
 group by Cli_Dni,Cli_Mail,Cli_Dom_Calle,Cli_Nro_Calle,Cli_Piso,Cli_Depto,Cli_Cod_Postal)
 
 
-insert into class.persona (IdUsuario,Nombre,Apellido,Dni,FechaNac)
-(select usuario.idusuario,Publ_Cli_Nombre nombre,Publ_Cli_Apeliido apellido,Publ_Cli_Dni dni,Publ_Cli_Fecha_Nac fec_nac
+insert into class.persona (IdUsuario,Nombre,Apellido,Dni,FechaNac,FechaCreacion)
+(select usuario.idusuario,Publ_Cli_Nombre nombre,Publ_Cli_Apeliido apellido,Publ_Cli_Dni dni,Publ_Cli_Fecha_Nac fec_nac, getdate()
 from gd_esquema.Maestra join class.usuario on ltrim(rtrim(Publ_Cli_Dni))=usuario where not(Publ_Cli_Dni is null)  
 group by usuario.idusuario,Publ_Cli_Nombre,Publ_Cli_Apeliido,Publ_Cli_Dni,Publ_Cli_Fecha_Nac
 union
-select usuario.idusuario,Cli_Nombre nombre,Cli_Apeliido apellido,Cli_Dni dni,Cli_Fecha_Nac fec_nac
+select usuario.idusuario,Cli_Nombre nombre,Cli_Apeliido apellido,Cli_Dni dni,Cli_Fecha_Nac fec_nac, getdate()
 from gd_esquema.Maestra join class.usuario on ltrim(rtrim(Cli_Dni))=usuario where not(Cli_Dni is null)  
 group by usuario.idusuario,Cli_Nombre,Cli_Apeliido,Cli_Dni,Cli_Fecha_Nac)
 
-insert into class.Usuario (usuario,clave,EstaHabilitado,idrol,LoginFallidos,TipoDocumento,mail,calle,numero,piso,Depto,CodigoPostal,FechaCreacion,PublicacionesGratuitas)
+insert into class.Usuario (usuario,clave,EstaHabilitado,idrol,LoginFallidos,TipoDocumento,mail,calle,numero,piso,Depto,CodigoPostal,PublicacionesGratuitas)
 (select replace(Publ_Empresa_Cuit,'-','') usuario,convert(varbinary,Class.psencriptar(CONVERT(nvarchar(4000), replace(Publ_Empresa_Cuit,'-',''))))
 ,1,2,0,'CUIT',Publ_Empresa_Mail mail,Publ_Empresa_Dom_Calle calle,Publ_Empresa_Nro_Calle nro,Publ_Empresa_Piso piso,Publ_Empresa_Depto depto,
-Publ_Empresa_Cod_Postal postal,getdate(),0 from gd_esquema.Maestra where not(Publ_Empresa_Cuit is null)  
+Publ_Empresa_Cod_Postal postal,0 from gd_esquema.Maestra where not(Publ_Empresa_Cuit is null)  
 group by Publ_Empresa_Cuit,Publ_Empresa_Mail,Publ_Empresa_Dom_Calle,Publ_Empresa_Nro_Calle,Publ_Empresa_Piso,
 Publ_Empresa_Depto,Publ_Empresa_Cod_Postal)
 

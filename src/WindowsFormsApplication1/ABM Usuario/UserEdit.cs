@@ -106,19 +106,31 @@ namespace WindowsFormsApplication1.ABM_Usuario
             Rol rol = (Rol)rolCmb.SelectedItem;
             if (personRadioButton.Checked)
             {
+
+                DateTime createdAt;
+                DateTime birthDate;
+                try
+                {
+                    createdAt = DateTime.Parse(createdAtTxt.Text);
+                    birthDate = DateTime.Parse(birthdateTxt.Text);
+                }
+                catch
+                {
+                    MessageBox.Show("Error en uno de los campos").ToString();
+                    return;
+                }
                 this.User = new Persona(oldId, usernameTxt.Text, passwordTxt.Text, rol.IdRol,
                     nameTxt.Text, surnameTxt.Text, IDNumberTxt.Text, IDTypeTxt.Text, emailTxt.Text, phoneTxt.Text,
                     addressStreetTxt.Text, addressNumberTxt.Text, addressFloorTxt.Text, addressDepartmentTxt.Text,
-                    addressCityTxt.Text, addressZipcodeTxt.Text, DateTime.Parse(birthdateTxt.Text),
-                    DateTime.Parse(createdAtTxt.Text), estaHabilitadoChk.Checked);
+                    addressCityTxt.Text, addressZipcodeTxt.Text, birthDate,
+                    createdAt, estaHabilitadoChk.Checked);
             }
             else
             {
                 this.User = new Empresa(oldId, usernameTxt.Text, passwordTxt.Text, rol.IdRol,
                     companyNameTxt.Text, companyIDTxt.Text, emailTxt.Text, phoneTxt.Text, addressStreetTxt.Text,
                     addressNumberTxt.Text, addressFloorTxt.Text, addressDepartmentTxt.Text, addressCityTxt.Text,
-                    addressZipcodeTxt.Text, contactNameTxt.Text, mainActivityTxt.Text,
-                    DateTime.Parse(createdAtTxt.Text), estaHabilitadoChk.Checked);
+                    addressZipcodeTxt.Text, contactNameTxt.Text, mainActivityTxt.Text, estaHabilitadoChk.Checked);
             }
             usersDAO.save(this.User);
         }

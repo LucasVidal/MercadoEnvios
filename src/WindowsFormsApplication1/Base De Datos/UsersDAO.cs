@@ -66,8 +66,7 @@ namespace WindowsFormsApplication1.Base_De_Datos
                     row["Cuit"].ToString(), row["Mail"].ToString().Trim(), row["Telefono"].ToString().Trim(),
                     row["Calle"].ToString().Trim(), row["Numero"].ToString().Trim(), row["Piso"].ToString().Trim(),
                     row["Depto"].ToString().Trim(), row["Localidad"].ToString().Trim(), row["CodigoPostal"].ToString().Trim(),
-                    row["NombreContacto"].ToString().Trim(), row["Rubro"].ToString().Trim(), 
-                    row.Field<DateTime>("FechaCreacion"), (bool)row["EstaHabilitado"]
+                    row["NombreContacto"].ToString().Trim(), row["Rubro"].ToString().Trim(), (bool)row["EstaHabilitado"]
                 );
             }
         }
@@ -83,11 +82,12 @@ namespace WindowsFormsApplication1.Base_De_Datos
         private int createCommon(Usuario usuario)
         {
             String query = "insert into class.usuario (Usuario, Clave, EstaHabilitado, IdRol, LoginFallidos, Mail, "
-                + "Telefono, Ciudad, Calle, Numero, Piso, Depto, Localidad, CodigoPostal, FechaCreacion) " +
-                " values(" + usuario.IdUsuario + ", " + hashClave(usuario.Password) + ", 1, " + usuario.RolId
-                + ", 0, " + usuario.Email + ", " + usuario.Telefono + ", NULL, "
+                + "Telefono, Ciudad, Calle, Numero, Piso, Depto, Localidad, CodigoPostal) " +
+                " values(" + usuario.IdUsuario + ", " + 
+                "convert(varbinary,convert(nvarchar(4000),Class.psencriptar('" + usuario.Password + "'))), " +
+                "1, " + usuario.RolId + ", 0, " + usuario.Email + ", " + usuario.Telefono + ", NULL, "
                 + usuario.Calle + ", " + usuario.Numero + ", " + usuario.Piso + ", " + usuario.Depto + ", "
-                + usuario.Localidad + ", " + usuario.CodigoPostal + ", " + usuario.FechaDeCreacion + ")";
+                + usuario.Localidad + ", " + usuario.CodigoPostal + ")";
             int newUserId = Conexion.EjecutarComando(query);
             return newUserId;
         }
@@ -96,8 +96,8 @@ namespace WindowsFormsApplication1.Base_De_Datos
         {
             String query = "update class.Usuario set " +
                 "Usuario ='" + usuario.Username + "', " +
-                "Clave ='" + hashClave(usuario.Password) + "', " +
-                "EstaHabilitado =" + usuario.EstaHabilitado.ToString() + ", " +
+                "Clave =convert(varbinary,convert(nvarchar(4000),Class.psencriptar('" + usuario.Password + "'))), " +
+                "EstaHabilitado =" + (usuario.EstaHabilitado ? "1" : "0") + ", " +
                 "IdRol =" + usuario.RolId.ToString() + ", " +
                 "Mail ='" + usuario.Email + "', " +
                 "Telefono ='" + usuario.Telefono + "', " +
@@ -107,8 +107,7 @@ namespace WindowsFormsApplication1.Base_De_Datos
                 "Piso ='" + usuario.Piso + "', " +
                 "Depto ='" + usuario.Depto + "', " +
                 "Localidad ='" + usuario.Localidad + "', " +
-                "CodigoPostal ='" + usuario.CodigoPostal + "', " +
-                "FechaCreacion ='" + usuario.FechaDeCreacion + "' " +
+                "CodigoPostal ='" + usuario.CodigoPostal + "' " +
                 "where IdUsuario = " + usuario.IdUsuario.ToString() + ";";
             int newUserId = Conexion.EjecutarComando(query);
             return newUserId;
@@ -116,9 +115,9 @@ namespace WindowsFormsApplication1.Base_De_Datos
 
         private void createPersona(Persona persona)
         {
-            String query = "insert into class.persona (IdUsuario, Nombre, Apellido, DNI, FechaNac) " +
+            String query = "insert into class.persona (IdUsuario, Nombre, Apellido, DNI, FechaNac, FechaCreacion) " +
                 " values(" + persona.IdUsuario + ", " + persona.Nombre + ", " + persona.Apellido + ", " 
-                + persona.DNI + ", " + persona.FechaDeNacimiento + ")";
+                + persona.DNI + ", " + persona.FechaDeNacimiento + ", " + persona.FechaDeCreacion + " )";
             int result = Conexion.EjecutarComando(query);
         }
 
@@ -128,6 +127,7 @@ namespace WindowsFormsApplication1.Base_De_Datos
                 "Nombre ='" + persona.Nombre + "', " +
                 "Apellido ='" + persona.Apellido + "', " +
                 "DNI =" + persona.DNI + ", " +
+                "FechaCreacion ='" + persona.FechaDeCreacion + "' " +
                 " where IdUsuario = " + persona.IdUsuario.ToString() + ";";
             int result = Conexion.EjecutarComando(query);
         }
@@ -145,14 +145,10 @@ namespace WindowsFormsApplication1.Base_De_Datos
             String query = "update class.Empresa set " +
                 "RazonSocial ='" + empresa.RazonSocial + "'," +
                 "Cuit ='" + empresa.CUIT + "'," +
-                "NombreContacto =" + empresa.NombreDeContacto + "," +
-                "Rubro =" + empresa.Rubro + "," +
+                "NombreContacto ='" + empresa.NombreDeContacto + "'," +
+                "Rubro ='" + empresa.Rubro + "'" +
                 " where IdUsuario = " + empresa.IdUsuario + ";";
             int result = Conexion.EjecutarComando(query);
-        }
-
-        private string hashClave(string password) {
-            return password; //TODO
         }
     }
 }
