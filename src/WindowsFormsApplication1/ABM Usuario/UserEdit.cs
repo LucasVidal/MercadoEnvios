@@ -82,7 +82,8 @@ namespace WindowsFormsApplication1.ABM_Usuario
             phoneTxt.Text = user.Telefono;
             addressStreetTxt.Text = user.Calle;
             addressNumberTxt.Text = user.Numero;
-            addressFloorTxt.Text = user.Depto;
+            addressFloorTxt.Text = user.Piso;
+            addressDepartmentTxt.Text = user.Depto;
             addressZipcodeTxt.Text = user.CodigoPostal;
             addressCityTxt.Text = user.Localidad;
             estaHabilitadoChk.Checked = user.EstaHabilitado;

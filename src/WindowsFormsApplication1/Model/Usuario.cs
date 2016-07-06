@@ -31,6 +31,7 @@ namespace WindowsFormsApplication1.Model
             this.Email = Email;
             this.Telefono = Telefono;
             this.Calle = Calle;
+            this.Numero = Numero;
             this.Piso = Piso;
             this.Depto = Depto;
             this.Localidad = Localidad;

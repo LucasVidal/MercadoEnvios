@@ -497,7 +497,7 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(79, 199);
+            this.label22.Location = new System.Drawing.Point(79, 204);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(27, 13);
             this.label22.TabIndex = 44;
@@ -530,7 +530,7 @@
             this.passwordTxt.Location = new System.Drawing.Point(166, 309);
             this.passwordTxt.Name = "passwordTxt";
             this.passwordTxt.Size = new System.Drawing.Size(121, 20);
-            this.passwordTxt.TabIndex = 47;
+            this.passwordTxt.TabIndex = 25;
             // 
             // label8
             // 
