@@ -84,10 +84,6 @@ namespace WindowsFormsApplication1.Utils
             cmd.Connection = connection;
             cmd.CommandText = query;
             SqlDataReader reader = cmd.ExecuteReader();
-            //DataSet datos = new DataSet();
-            //SqlDataAdapter adapter = new SqlDataAdapter();
-            //adapter.SelectCommand = cmd;
-            //adapter.Fill(datos);
             tabla.Load(reader);
             return tabla;
         }
@@ -240,28 +236,6 @@ namespace WindowsFormsApplication1.Utils
             }
         }
 
-
-
-         #region ListadoEstadistico
-
-         public static DataTable Traer_vendedores_max_prod_no_vendidos(ItemFecha item_fecha)
-         {
-             SqlCommand cmd = Obtener_comando_para_sp("Class.Traer_vendedores_max_prod_no_vendidos");
-
-             /*cmd.Parameters.AddWithValue("@anio", item_fecha.anio);
-             cmd.Parameters.AddWithValue("@mes1", item_fecha.mes1);
-             cmd.Parameters.AddWithValue("@mes2", item_fecha.mes2);
-             cmd.Parameters.AddWithValue("@mes3", item_fecha.mes3);
-              * */
-
-             DataTable dt = new DataTable();
-             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-             adapter.Fill(dt);
-             return dt;
-         }
-
-
-#endregion
          public static void Actualizar_Subastas()
          {
              SqlCommand cmd = Obtener_comando_para_sp("Class.Actulizar_Subastas");
@@ -273,7 +247,6 @@ namespace WindowsFormsApplication1.Utils
              //Class.Verificar_Alta_De_Usuario_Con_Migracion(@id_Usuario int, @tipo int)
              SqlCommand cmd = Obtener_comando_para_sp("Class.VerificarPublicacionesGratis");
              cmd.Parameters.AddWithValue("@id_Usuario", idUser);
-
              //Agrego parametro de retorno
              SqlParameter parm = new SqlParameter("@parametro_retorno", SqlDbType.Int);
              parm.Direction = ParameterDirection.ReturnValue;

@@ -51,6 +51,7 @@ namespace MercadoEnvio.Generar_Publicacion
         {
             Listado_publicaciones modi = new Listado_publicaciones();
             modi.modificacion();
+            modi.setear_usuario(idusuario);
             modi.Show();
         }
     }

@@ -407,7 +407,7 @@ insert into class.RolFuncionalidad values (3,1,0)
 insert into class.RolFuncionalidad values (3,2,0)
 insert into class.RolFuncionalidad values (3,3,0)
 insert into class.RolFuncionalidad values (3,4,1)
-insert into class.RolFuncionalidad values (3,5,1)
+insert into class.RolFuncionalidad values (3,5,0)
 insert into class.RolFuncionalidad values (3,6,0)
 insert into class.RolFuncionalidad values (3,7,1)
 insert into class.RolFuncionalidad values (3,8,1)
@@ -546,8 +546,7 @@ GO
 CREATE PROCEDURE Class.VerificarPublicacionesGratis(@id_Usuario int)
 AS
 	BEGIN
-		DECLARE @parametro_retorno int;
-
+	    declare @parametro_retorno int
 		BEGIN
 			SELECT @parametro_retorno = PublicacionesGratuitas
 			FROM Class.Usuario 

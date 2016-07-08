@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using WindowsFormsApplication1.Utils;
+using MercadoEnvio.Base_De_Datos;
 
 namespace MercadoEnvio.ComprarOfertar
 {
@@ -154,9 +155,32 @@ namespace MercadoEnvio.ComprarOfertar
             }
         }
 
+
+        private Boolean PuedeComprar()
+        {
+            Boolean validacion = true;
+            string cadena = "select count(*) sin_calificar from class.Compra ";
+            cadena = cadena + " where IdCompra not in (select IdCompra from class.Calificacion) ";
+            cadena = cadena + " and compra.idusuario = " + idusuario.ToString().Trim();
+            DataTable compras_no_calificadas = Conexion.LeerTabla(cadena);
+            DataRow cantidad = compras_no_calificadas.Rows[0];
+            if (compras_no_calificadas.Rows.Count > 0)
+            {
+                if (int.Parse(cantidad[0].ToString().Trim())>3)
+                {
+                    validacion = false;
+                    MessageBox.Show("No es posible realizar la compra por poseer mas de 3 compras sin calificar.");
+                }
+            }
+            return validacion;
+        }
+
         private void button3_Click(object sender, EventArgs e)
         {
             if (!ValidarCampos())
+                return;
+
+            if (!PuedeComprar())
                 return;
 
             DAL da = new DAL();

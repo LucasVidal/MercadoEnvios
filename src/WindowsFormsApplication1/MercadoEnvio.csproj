@@ -100,7 +100,9 @@
     <Compile Include="ABM Usuario\ChangePassword.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Usuario\ChangePassword.Designer.cs" />
+    <Compile Include="ABM Usuario\ChangePassword.Designer.cs">
+      <DependentUpon>ChangePassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="ABM Usuario\UserEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -205,11 +207,11 @@
     <Compile Include="Historial Cliente\Historial.Designer.cs">
       <DependentUpon>Historial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Listado Estadistico\Estadistica.cs">
+    <Compile Include="Listado Estadistico\Listado_Estadistico.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Listado Estadistico\Estadistica.Designer.cs">
-      <DependentUpon>Estadistica.cs</DependentUpon>
+    <Compile Include="Listado Estadistico\Listado_Estadistico.Designer.cs">
+      <DependentUpon>Listado_Estadistico.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\Empresa.cs" />
     <Compile Include="Model\Persona.cs" />
@@ -220,15 +222,9 @@
     <Compile Include="Utils\DAL.cs" />
     <Compile Include="Utils\DB.cs" />
     <Compile Include="Utils\DBService.cs" />
-    <Compile Include="Utils\ItemBuscadorUsuario.cs" />
-    <Compile Include="Utils\ItemCliente.cs" />
-    <Compile Include="Utils\ItemEmpresa.cs" />
     <Compile Include="Utils\ItemFecha.cs" />
     <Compile Include="Utils\ItemPublicacion.cs" />
-    <Compile Include="Utils\ItemUsuario.cs" />
-    <Compile Include="Utils\ItemVisibilidad.cs" />
     <Compile Include="Utils\PaginationController.cs" />
-    <Compile Include="Utils\Usuario.cs" />
     <Compile Include="Utils\UtilsForms.cs" />
     <EmbeddedResource Include="Abm Login\LOGIN.resx">
       <DependentUpon>LOGIN.cs</DependentUpon>
@@ -245,7 +241,9 @@
     <EmbeddedResource Include="Abm Rol\Roles_Sistema.resx">
       <DependentUpon>Roles_Sistema.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Usuario\ChangePassword.resx" />
+    <EmbeddedResource Include="ABM Usuario\ChangePassword.resx">
+      <DependentUpon>ChangePassword.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ABM Usuario\UserEdit.resx">
       <DependentUpon>UserEdit.cs</DependentUpon>
     </EmbeddedResource>
@@ -294,8 +292,8 @@
     <EmbeddedResource Include="Historial Cliente\Historial.resx">
       <DependentUpon>Historial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Listado Estadistico\Estadistica.resx">
-      <DependentUpon>Estadistica.cs</DependentUpon>
+    <EmbeddedResource Include="Listado Estadistico\Listado_Estadistico.resx">
+      <DependentUpon>Listado_Estadistico.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -346,6 +344,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

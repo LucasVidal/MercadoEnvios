@@ -14,6 +14,7 @@ namespace MercadoEnvio.ALTA_Visibilidad
 {
     public partial class Alta : Form
     {
+        bool esalta= true;
         public Alta()
         {
             InitializeComponent();
@@ -36,7 +37,8 @@ namespace MercadoEnvio.ALTA_Visibilidad
         {
             if (checkBox1.Checked)
             {
-                envio.Enabled = true;
+                if (!button2.Visible)
+                    envio.Enabled = true;
             }
             else
             {
@@ -52,7 +54,6 @@ namespace MercadoEnvio.ALTA_Visibilidad
 
         private void button1_Click(object sender, EventArgs e)
         {
-            textBox2.Text = " ";
             textBox4.Text = "";
             porcentaje.Value = 0;
             ordenamiento.Value = 0;
@@ -100,12 +101,20 @@ namespace MercadoEnvio.ALTA_Visibilidad
             }
             else
             {
-                string cmd = "select 1 from class.visibilidad where grado=" + ordenamiento.Value.ToString().Trim().Replace(',', '.');
+                string cmd;
+                if (esalta)
+                {
+                    cmd = "select 1 from class.visibilidad where grado=" + ordenamiento.Value.ToString().Trim().Replace(',', '.');
+                }
+                else
+                {
+                    cmd = "select 1 from class.visibilidad where idvisibilidad<> " + textBox2.Text.Trim() + " and grado=" + ordenamiento.Value.ToString().Trim().Replace(',', '.');
+                }
                 DataTable nro_ordenamiento = new DataTable();
                 nro_ordenamiento = Conexion.LeerTabla(cmd);
                 if (nro_ordenamiento.Rows.Count != 0)
                 {
-                    MessageBox.Show("El ordenamiento seleccionado ya existe.");
+                    MessageBox.Show("El ordenamiento seleccionado ya existe para otra visibilidad.");
                     return;
                 }
             }
@@ -117,7 +126,7 @@ namespace MercadoEnvio.ALTA_Visibilidad
                     return;
                 }
             }
-            if (textBox2.Text.Trim().Length == 0) //Es un alta
+            if (esalta) //Es un alta
             {
                 DataTable visibilidadesexistentes = new DataTable();
                 string cadena = "select 1 from Class.Visibilidad where descripcion='" + textBox4.Text.Trim() + "'";
@@ -128,7 +137,6 @@ namespace MercadoEnvio.ALTA_Visibilidad
                 }
                 else
                 {
-
                     cadena = "begin tran; ";
                     if (checkBox1.Checked)
                     {
@@ -194,6 +202,7 @@ namespace MercadoEnvio.ALTA_Visibilidad
         }
         public void modificacion(string IdVisibilidad, string Descripcion, string Grado, string Porcentaje, string Costo, string Tieneenvio, string Costoenvio)
         {
+            esalta = false;
             textBox2.Text = IdVisibilidad;
             textBox4.Text = Descripcion;
             ordenamiento.Value = Convert.ToDecimal(Grado);
@@ -218,6 +227,7 @@ namespace MercadoEnvio.ALTA_Visibilidad
 
         public void baja(string IdVisibilidad, string Descripcion, string Grado, string Porcentaje, string Costo, string Tieneenvio, string Costoenvio)
         {
+            esalta = false;
             textBox2.Text = IdVisibilidad;
             textBox4.Text = Descripcion;
             ordenamiento.Value = Convert.ToDecimal(Grado);
@@ -227,12 +237,12 @@ namespace MercadoEnvio.ALTA_Visibilidad
             if (Convert.ToBoolean(Tieneenvio))
             {
                 checkBox1.Checked = true;
-                costo.Value = Convert.ToDecimal(Costoenvio);
+                envio.Value = Convert.ToDecimal(Costoenvio);
             }
             else
             {
                 checkBox1.Checked = false;
-                costo.Value = 0;
+                envio.Value = 0;
             }
             textBox2.ReadOnly = true;
             textBox4.ReadOnly = true;
@@ -244,6 +254,7 @@ namespace MercadoEnvio.ALTA_Visibilidad
             checkBox1.Enabled = false;
             button2.Visible = true;
             button3.Visible = false;
+            envio.Enabled = false;
         }
 
         private void button2_Click(object sender, EventArgs e)
