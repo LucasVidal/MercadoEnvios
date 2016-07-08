@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using WindowsFormsApplication1.Utils;
 using System.Data.SqlClient;
 using System.Data;
+using MercadoEnvio.Base_De_Datos;
 
 namespace WindowsFormsApplication1.Utils
 {
@@ -13,7 +14,7 @@ namespace WindowsFormsApplication1.Utils
     {
         public static DataTable Obtener_Registro_Con_ID(int id, string nombreColumna, string nombreTabla)
         {
-            SqlConnection connection = DB.GetDB();
+            SqlConnection connection = Conexion.conexion;
             SqlCommand cmd = new SqlCommand(    );
             cmd.Connection = connection;
 
@@ -30,7 +31,7 @@ namespace WindowsFormsApplication1.Utils
 
         public static DataTable Obtener_Registro_Con_String(string stringBuscado, string nombreColumna, string nombreTabla)
         {
-            SqlConnection connection = DB.GetDB();
+            SqlConnection connection = Conexion.conexion;
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = connection;
 
@@ -79,7 +80,7 @@ namespace WindowsFormsApplication1.Utils
         public static DataTable EjecutarQuery(string query)
         {
             DataTable tabla = new DataTable();
-            SqlConnection connection = DB.GetDB();
+            SqlConnection connection = Conexion.conexion;
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = connection;
             cmd.CommandText = query;
@@ -93,7 +94,7 @@ namespace WindowsFormsApplication1.Utils
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = nombreSP;
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Connection = DB.GetDB();
+            cmd.Connection = Conexion.conexion;
             return cmd;
         }
 

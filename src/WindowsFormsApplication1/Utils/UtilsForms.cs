@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MercadoEnvio.Base_De_Datos;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -23,7 +24,7 @@ namespace WindowsFormsApplication1.Utils
 
         public static void QueryAGrid(String query, DataGridView grid)
         {
-            SqlConnection db = DB.GetDB();
+            SqlConnection db = Conexion.conexion;
 
             SqlCommand cmd = new SqlCommand(query, db);
             cmd.CommandType = CommandType.Text;
