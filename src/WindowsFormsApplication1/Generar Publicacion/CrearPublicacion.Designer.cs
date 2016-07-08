@@ -134,9 +134,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(21, 203);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(137, 17);
+            this.label1.Size = new System.Drawing.Size(43, 17);
             this.label1.TabIndex = 18;
-            this.label1.Text = "Posibilidad De Envio";
+            this.label1.Text = "Envio";
             // 
             // comboBox_visibilidades
             // 

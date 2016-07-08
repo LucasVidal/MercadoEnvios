@@ -15,10 +15,10 @@ namespace WindowsFormsApplication1.Base_De_Datos
     class UsersDAO
     {
 
-        public void save(Usuario usuario, string password)
+        public void save(Usuario usuario)
         {
             if (usuario.IdUsuario == -1) {
-                int newId = createCommon(usuario, password);
+                int newId = createCommon(usuario);
                 usuario.IdUsuario =  newId;
                 if (usuario.GetType() == typeof(Persona)) {
                     createPersona((Persona)usuario);
@@ -46,7 +46,7 @@ namespace WindowsFormsApplication1.Base_De_Datos
                 DataRow row = result.Rows[0];
                 if (result.Rows.Count == 0) return null;
 
-                return new Persona((int)row["IdUsuario"], row["Usuario"].ToString().Trim(),
+                return new Persona((int)row["IdUsuario"], row["Usuario"].ToString().Trim(), null,
                     (int)row["IdRol"], row["Nombre"].ToString(),
                     row["Apellido"].ToString(), row["DNI"].ToString().Trim(), row["TipoDocumento"].ToString().Trim(),
                     row["Mail"].ToString().Trim(), row["Telefono"].ToString().Trim(), row["Calle"].ToString().Trim(),
@@ -64,7 +64,7 @@ namespace WindowsFormsApplication1.Base_De_Datos
                 DataRow row = result.Rows[0];
                 if (result.Rows.Count == 0) return null;
 
-                return new Empresa((int)row["IdUsuario"], row["Usuario"].ToString().Trim(),
+                return new Empresa((int)row["IdUsuario"], row["Usuario"].ToString().Trim(), null,
                     (int)row["IdRol"], row["RazonSocial"].ToString(),
                     row["Cuit"].ToString(), row["Mail"].ToString().Trim(), row["Telefono"].ToString().Trim(),
                     row["Calle"].ToString().Trim(), row["Numero"].ToString().Trim(), row["Piso"].ToString().Trim(),
@@ -81,12 +81,12 @@ namespace WindowsFormsApplication1.Base_De_Datos
             return result.Rows.Count > 0;
         }
 
-        private int createCommon(Usuario usuario, string password)
+        private int createCommon(Usuario usuario)
         {
             String query = "insert into class.usuario (Usuario, Clave, EstaHabilitado, LoginFallidos, Mail, "
                 + "Telefono, Ciudad, Calle, Numero, Piso, Depto, Localidad, CodigoPostal, PublicacionesGratuitas) values (" +
                 "'" + usuario.Username + "', " + 
-                "convert(varbinary,convert(nvarchar(4000),Class.psencriptar('" + password + "'))), " +
+                "convert(varbinary,convert(nvarchar(4000),Class.psencriptar('" + usuario.Password + "'))), " +
                 (usuario.EstaHabilitado ? "1" : "0") + ", " +
                 "0, " + 
                 "'" + usuario.Email + "', " + 
@@ -114,6 +114,7 @@ namespace WindowsFormsApplication1.Base_De_Datos
         {
             String query = "update class.Usuario set " +
                 "Usuario ='" + usuario.Username + "', " +
+                "Clave =convert(varbinary,convert(nvarchar(4000),Class.psencriptar('" + usuario.Password + "'))), " +
                 "EstaHabilitado =" + (usuario.EstaHabilitado ? "1" : "0") + ", " +
                 "Mail ='" + usuario.Email + "', " +
                 "Telefono ='" + usuario.Telefono + "', " +

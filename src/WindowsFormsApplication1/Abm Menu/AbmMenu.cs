@@ -59,7 +59,6 @@ namespace MercadoEnvio.Abm_Menu
             funcionalidades = Conexion.LeerTabla(cadena);
             //Inicializo todo inhabilitad
             button1.Enabled = false;
-            button1.Enabled = false;
             button2.Enabled = false;
             button3.Enabled = false;
             button4.Enabled = false;
@@ -102,9 +101,6 @@ namespace MercadoEnvio.Abm_Menu
                         case 9:
                             button9.Enabled = true;
                             break;
-                        /*case 10:
-                            button9.Enabled = true;
-                            break;*/
                     }
 
                 }
@@ -160,7 +156,7 @@ namespace MercadoEnvio.Abm_Menu
 
         private void button10_Click(object sender, EventArgs e)
         {
-            Estadistica listado = new Estadistica();
+            Listado_Estadistico.Listado_Estadistico listado = new Listado_Estadistico.Listado_Estadistico();
             listado.Show();
         }
 
@@ -214,6 +210,11 @@ namespace MercadoEnvio.Abm_Menu
         {
             ChangePassword changePassword = new ChangePassword(this.IdUsuario);
             changePassword.Show();
+        }
+
+        private void button10_Click_1(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
 
     }

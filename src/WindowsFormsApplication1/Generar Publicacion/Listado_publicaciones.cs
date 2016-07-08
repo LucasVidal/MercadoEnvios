@@ -15,6 +15,7 @@ namespace MercadoEnvio.Generar_Publicacion
 {
     public partial class Listado_publicaciones : Form
     {
+        int idusuario;
         public Listado_publicaciones()
         {
             InitializeComponent();
@@ -49,6 +50,22 @@ namespace MercadoEnvio.Generar_Publicacion
                     cadena = cadena + " where Publicacion.idpublicacion like '%" + textBox2.Text.Trim() + "%'";
                 }
             }
+            //Si el usuario tiene rol administrador, le traigo todas las publicaciones,caso contrario, le muestro unicamente las de él
+            DataTable roles_del_usuario = new DataTable();
+            string cmd = "select 1 from class.rolUsuario  where idusuario=" + idusuario.ToString().Trim() + " and idrol=1";
+            roles_del_usuario = Conexion.LeerTabla(cmd);
+            if (roles_del_usuario.Rows.Count <= 0)
+            {
+                if (textBox2.Text.Trim().Length == 0 && textBox1.Text.Trim().Length == 0)
+                {
+                    cadena = cadena + " where publicacion.idusuario=" + idusuario.ToString().Trim();
+                }
+                else
+                {
+                    cadena = cadena + " and publicacion.idusuario=" + idusuario.ToString().Trim();
+                }
+                
+            }
 
             DataTable publicaciones = new DataTable();
             publicaciones = Conexion.LeerTabla(cadena);
@@ -61,6 +78,11 @@ namespace MercadoEnvio.Generar_Publicacion
                 dataGridView1.DataSource = publicaciones;
                 dataGridView1.ReadOnly = true;
             }
+        }
+
+        public void setear_usuario(int unUsuario)
+        {
+            idusuario = unUsuario;
         }
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -105,6 +127,7 @@ namespace MercadoEnvio.Generar_Publicacion
                     {
                         Publicacion modi = new Publicacion();
                         modi.modificacion(IdPublicacion);
+                        modi.setear_usuario(idusuario);
                         modi.Show();
                         this.Dispose();
                     }
