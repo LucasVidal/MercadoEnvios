@@ -31,11 +31,12 @@ namespace MercadoEnvio.Facturas
             Llenar_ComboBox_Usuario();
             Crear_PaginationController();
             dateTime_desde.Visible = true;
-            dateTime_desde.Value = DateTime.Parse("01/01/" + DateTime.Parse(System.Configuration.ConfigurationManager.AppSettings["FechaSistema"]).Year.ToString().Trim());
+            int currentYear = DateTime.Parse(System.Configuration.ConfigurationManager.AppSettings["FechaSistema"]).Year;
+            dateTime_desde.Value = new DateTime(currentYear, 1, 1);
             dateTime_desde.Format = DateTimePickerFormat.Custom;
             dateTime_desde.CustomFormat = "dd/MM/yyyy";
             dateTime_hasta.Visible = true;
-            dateTime_hasta.Value = DateTime.Parse("31/12/" + DateTime.Parse(System.Configuration.ConfigurationManager.AppSettings["FechaSistema"]).Year.ToString().Trim()); ;
+            dateTime_hasta.Value = new DateTime(currentYear, 12, 13);
             dateTime_hasta.Format = DateTimePickerFormat.Custom;
             dateTime_hasta.CustomFormat = "dd/MM/yyyy";
         }
