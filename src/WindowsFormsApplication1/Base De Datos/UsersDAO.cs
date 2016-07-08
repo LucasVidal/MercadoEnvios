@@ -98,7 +98,7 @@ namespace WindowsFormsApplication1.Base_De_Datos
                 "'" + usuario.Depto + "', " +
                 "'" + usuario.Localidad + "', " + 
                 "'" + usuario.CodigoPostal + "', " +
-                "0);";
+                "1);";
             int newUserId = Conexion.ExecuteAndReturnId(query);
 
             query = "insert into class.rolUsuario (Orden, IdUsuario, IdRol) values (" +
